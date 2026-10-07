@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core:
+    # RPH.Mod needs the game's DLLs, which cannot be on CI: only the pure core is built and tested.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet build src/RPH.Core -c Release
+      - run: dotnet test tests/RPH.Core.Tests -c Release

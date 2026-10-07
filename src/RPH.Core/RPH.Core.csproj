@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Pure C#, no Unity or game references: shipped to the game (net35) and unit-tested (netstandard2.0). -->
+  <PropertyGroup>
+    <TargetFrameworks>net35;netstandard2.0</TargetFrameworks>
+    <RootNamespace>RPH.Core</RootNamespace>
+    <AssemblyName>RPH.Core</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>7.3</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <Version>0.1.0</Version>
+    <Authors>Drekth</Authors>
+    <Product>RPH Revamped Project Hospital</Product>
+  </PropertyGroup>
+  <!-- Machine-specific settings (game path). Copy local.props.example to local.props. -->
+  <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')" />
+</Project>

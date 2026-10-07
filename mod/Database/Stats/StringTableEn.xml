@@ -1,0 +1,56 @@
+<Database>
+    <GameDBStringTable ID="LOC_EN_RPH_STATS">
+        <LanguageCode>en</LanguageCode>
+        <LanguageNameLocalized>English</LanguageNameLocalized>
+        <Contributors>
+            <Name>Drekth</Name>
+        </Contributors>
+        <LocalizedStrings>
+            <GameDBLocalizedString><LocID>RPH_STATS_TITLE</LocID><Text>Advanced statistics</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_STATS_TOOLTIP</LocID><Text>Advanced statistics (F9)</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_STATS_CLOCK</LocID><Text>Day {1}  {2}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SUMMARY</LocID><Text>Summary</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SPENDING</LocID><Text>Spending</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_INCOME</LocID><Text>Income</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SHIFTS</LocID><Text>Shifts</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_DEPARTMENTS</LocID><Text>Departments</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_ACTIVITY</LocID><Text>Exams &amp; treatments</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_TODAY</LocID><Text>Today</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_YESTERDAY</LocID><Text>Yesterday</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_LAST7DAYS</LocID><Text>7 days</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_LAST30DAYS</LocID><Text>30 days</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_ALLDAYS</LocID><Text>All days</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_DAY</LocID><Text>Day</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_TODAY</LocID><Text>Today (day {1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_YESTERDAY</LocID><Text>Yesterday (day {1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_DAY</LocID><Text>Day {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_DAYS</LocID><Text>Days {1} to {2}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_IN</LocID><Text>Money in</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_OUT</LocID><Text>Money out</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_PROFIT</LocID><Text>Profit or loss</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_BALANCE</LocID><Text>Balance</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_PER_DAY</LocID><Text>Per day {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_LOAN</LocID><Text>Loan {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_NO_LOAN</LocID><Text>No loan</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_COLUMN_RESULT</LocID><Text>Result</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CHART_TITLE</LocID><Text>PROFIT OR LOSS, DAY BY DAY</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_CAME_FROM</LocID><Text>Where the money came from</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_WENT</LocID><Text>Where the money went</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DPT_MAKING</LocID><Text>Departments making money</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DPT_LOSING</LocID><Text>Departments losing money</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DIAGNOSES</LocID><Text>Best paid diagnoses</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_BY_CATEGORY</LocID><Text>By category</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_DAY</LocID><Text>Day shift</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_NIGHT</LocID><Text>Night shift</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_UNKNOWN</LocID><Text>Not split</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_EXAMINATION</LocID><Text>Examinations</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_LABEXAMINATION</LocID><Text>Laboratory tests</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_TREATMENT</LocID><Text>Treatments</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_SURGERY</LocID><Text>Surgeries</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_NO_ACTIVITY</LocID><Text>No exam or treatment finished in this period since the mod was installed.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_IMPORTED</LocID><Text>Some days are from before the mod was installed: they come from the game's daily totals, without shifts, causes or hiring fees (counted as penalties by the game).</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_PARTIAL</LocID><Text>The day the mod was installed (or a save without RPH data was loaded) is only counted from that moment.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_RECONCILIATION</LocID><Text>{1} of balance change could not be explained in this period (another mod or a cheat changed the balance directly).</Text></GameDBLocalizedString>
+        </LocalizedStrings>
+    </GameDBStringTable>
+</Database>

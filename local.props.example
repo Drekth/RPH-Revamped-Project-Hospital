@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- macOS: the .app bundle. Windows: the folder that contains ProjectHospital_Data. -->
+    <GameDir>$(HOME)/Library/Application Support/Steam/steamapps/common/Project Hospital/project_hospital.app</GameDir>
+  </PropertyGroup>
+</Project>

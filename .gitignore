@@ -1,0 +1,17 @@
+# Game code and tools: never commit (belongs to Oxymoron Games)
+decompiled/
+.tools/
+
+# Local machine settings (game path)
+local.props
+
+# .NET build output
+bin/
+obj/
+*.user
+
+# OS / IDE
+.DS_Store
+.idea/
+.vs/
+.vscode/

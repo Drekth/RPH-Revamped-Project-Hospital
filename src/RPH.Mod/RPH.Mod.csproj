@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <RootNamespace>RPH.Mod</RootNamespace>
+    <AssemblyName>RPH.Mod</AssemblyName>
+    <!-- Name of the folder in StreamingAssets/Addons (must start with "Mod"). -->
+    <ModFolderName>ModRPHRevamped</ModFolderName>
+    <!-- The game's DLLs reference mscorlib 4.0.0.0 but run on Unity's 2.0/3.5 profile (verified: no Task, no Lazy).
+         Skip the dependency walk that rejects them; Mono unifies the versions at runtime. -->
+    <_FindDependencies>false</_FindDependencies>
+    <NoWarn>$(NoWarn);MSB3258;CS1701;CS1702</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists('$(GameDir)/Contents/Resources/Data')">
+    <GameDataDir>$(GameDir)/Contents/Resources/Data</GameDataDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GameDataDir)' == '' And Exists('$(GameDir)/ProjectHospital_Data')">
+    <GameDataDir>$(GameDir)/ProjectHospital_Data</GameDataDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManagedDir>$(GameDataDir)/Managed</ManagedDir>
+    <AddonDir>$(GameDataDir)/StreamingAssets/Addons/$(ModFolderName)</AddonDir>
+  </PropertyGroup>
+
+  <Target Name="CheckGameDir" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(GameDataDir)' == ''" Text="Game not found. Copy local.props.example to local.props and set GameDir (current: '$(GameDir)')." />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPH.Core\RPH.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Game assemblies: compile against them, never copy or commit them. -->
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedDir)/Assembly-CSharp.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedDir)/UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedDir)/UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(ManagedDir)/UnityEngine.UI.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(ManagedDir)/UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(ManagedDir)/UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.InputModule" HintPath="$(ManagedDir)/UnityEngine.InputModule.dll" Private="false" />
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(ManagedDir)/UnityEngine.IMGUIModule.dll" Private="false" />
+  </ItemGroup>
+
+  <!-- Copy the mod into the game's Addons folder after a Release build. -->
+  <Target Name="DeployToGame" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <ItemGroup>
+      <ModData Include="$(MSBuildThisFileDirectory)../../mod/**/*" />
+      <HarmonyDll Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)%(Extension)' == '0Harmony.dll'" />
+    </ItemGroup>
+    <!-- Start from a clean Database folder so files moved or deleted in mod/ do not linger in the game. -->
+    <RemoveDir Directories="$(AddonDir)/Database" />
+    <Copy SourceFiles="$(TargetPath);$(OutDir)RPH.Core.dll;@(HarmonyDll)" DestinationFolder="$(AddonDir)" />
+    <Copy SourceFiles="$(NuGetPackageRoot)lib.harmony/2.2.2/LICENSE" DestinationFiles="$(AddonDir)/LICENSE-Harmony.txt" />
+    <Copy SourceFiles="@(ModData)" DestinationFiles="@(ModData->'$(AddonDir)/%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Message Importance="high" Text="RPH deployed to $(AddonDir)" />
+  </Target>
+</Project>

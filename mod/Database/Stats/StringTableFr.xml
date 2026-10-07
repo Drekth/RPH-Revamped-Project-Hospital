@@ -1,0 +1,56 @@
+<Database>
+    <GameDBStringTable ID="LOC_FR_RPH_STATS">
+        <LanguageCode>fr</LanguageCode>
+        <LanguageNameLocalized>Français</LanguageNameLocalized>
+        <Contributors>
+            <Name>Drekth</Name>
+        </Contributors>
+        <LocalizedStrings>
+            <GameDBLocalizedString><LocID>RPH_STATS_TITLE</LocID><Text>Statistiques avancées</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_STATS_TOOLTIP</LocID><Text>Statistiques avancées (F9)</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_STATS_CLOCK</LocID><Text>Jour {1}  {2}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SUMMARY</LocID><Text>Résumé</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SPENDING</LocID><Text>Dépenses</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_INCOME</LocID><Text>Recettes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_SHIFTS</LocID><Text>Équipes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_DEPARTMENTS</LocID><Text>Départements</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TAB_ACTIVITY</LocID><Text>Examens et soins</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_TODAY</LocID><Text>Aujourd'hui</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_YESTERDAY</LocID><Text>Hier</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_LAST7DAYS</LocID><Text>7 jours</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_LAST30DAYS</LocID><Text>30 jours</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_ALLDAYS</LocID><Text>Tous les jours</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_RANGE_DAY</LocID><Text>Jour</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_TODAY</LocID><Text>Aujourd'hui (jour {1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_YESTERDAY</LocID><Text>Hier (jour {1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_DAY</LocID><Text>Jour {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_TITLE_DAYS</LocID><Text>Jours {1} à {2}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_IN</LocID><Text>Recettes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_OUT</LocID><Text>Dépenses</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_PROFIT</LocID><Text>Bénéfice ou perte</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_BALANCE</LocID><Text>Solde</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_PER_DAY</LocID><Text>Par jour {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_LOAN</LocID><Text>Prêt {1}</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_KPI_NO_LOAN</LocID><Text>Aucun prêt</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_COLUMN_RESULT</LocID><Text>Résultat</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CHART_TITLE</LocID><Text>BÉNÉFICE OU PERTE, JOUR PAR JOUR</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_CAME_FROM</LocID><Text>D'où vient l'argent</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_WENT</LocID><Text>Où est parti l'argent</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DPT_MAKING</LocID><Text>Départements bénéficiaires</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DPT_LOSING</LocID><Text>Départements déficitaires</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_DIAGNOSES</LocID><Text>Diagnostics les mieux payés</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SECTION_BY_CATEGORY</LocID><Text>Par catégorie</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_DAY</LocID><Text>Équipe de jour</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_NIGHT</LocID><Text>Équipe de nuit</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_SHIFT_UNKNOWN</LocID><Text>Non réparti</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_EXAMINATION</LocID><Text>Examens</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_LABEXAMINATION</LocID><Text>Analyses de laboratoire</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_TREATMENT</LocID><Text>Soins</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ACTIVITY_SURGERY</LocID><Text>Chirurgies</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_NO_ACTIVITY</LocID><Text>Aucun examen ni soin terminé sur cette période depuis l'installation du mod.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_IMPORTED</LocID><Text>Certains jours datent d'avant l'installation du mod : ils viennent des totaux quotidiens du jeu, sans équipes, causes ni frais de recrutement (comptés comme pénalités par le jeu).</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_PARTIAL</LocID><Text>Le jour d'installation du mod (ou de chargement d'une sauvegarde sans données RPH) n'est compté qu'à partir de ce moment.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_NOTE_RECONCILIATION</LocID><Text>{1} de variation du solde n'ont pas pu être expliqués sur cette période (un autre mod ou une triche a modifié le solde directement).</Text></GameDBLocalizedString>
+        </LocalizedStrings>
+    </GameDBStringTable>
+</Database>

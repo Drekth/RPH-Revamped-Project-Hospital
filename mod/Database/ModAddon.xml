@@ -1,0 +1,6 @@
+<Database>
+    <!-- RPH Revamped Project Hospital: a code mod. The game runs its DLLs only from StreamingAssets/Addons. -->
+    <GameDBAddon ID="ADDON_MOD_RPH_REVAMPED">
+        <Author>Drekth</Author>
+    </GameDBAddon>
+</Database>

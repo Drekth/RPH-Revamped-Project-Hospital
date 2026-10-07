@@ -1,0 +1,51 @@
+<Database>
+    <GameDBStringTable ID="LOC_FR_RPH_COMMON">
+        <LanguageCode>fr</LanguageCode>
+        <LanguageNameLocalized>Français</LanguageNameLocalized>
+        <Contributors>
+            <Name>Drekth</Name>
+        </Contributors>
+        <LocalizedStrings>
+            <GameDBLocalizedString><LocID>ADDON_MOD_RPH_REVAMPED</LocID><Text>RPH Revamped Project Hospital</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_HOSPITAL_WIDE</LocID><Text>Tout l'hôpital</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Unknown</LocID><Text>Autre</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InsuranceClinic</LocID><Text>Assurance - patients renvoyés chez eux</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InsuranceHospitalization</LocID><Text>Assurance - patients hospitalisés</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Food</LocID><Text>Repas</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InsuranceObjectives</LocID><Text>Récompenses des assureurs</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_EventIncome</LocID><Text>Événements</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Building</LocID><Text>Construction</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_HiringAgency</LocID><Text>Agence de recrutement</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_LoanInterest</LocID><Text>Intérêts du prêt</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Ambulances</LocID><Text>Ambulances</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Penalties</LocID><Text>Amendes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_EventExpense</LocID><Text>Événements</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_WagesClinic</LocID><Text>Salaires - personnel des consultations</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_WagesHospitalization</LocID><Text>Salaires - personnel des services</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Wages</LocID><Text>Salaires</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Training</LocID><Text>Formation</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_LoanTaken</LocID><Text>Prêt contracté</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_LoanRepaid</LocID><Text>Prêt remboursé</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterDoctor</LocID><Text>Médecins</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterDoctorWithInterns</LocID><Text>Médecins avec internes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterSurgeon</LocID><Text>Chirurgiens</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterAnesteziologist</LocID><Text>Anesthésistes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterNurse</LocID><Text>Infirmiers</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterReceptionist</LocID><Text>Réceptionnistes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterSurgeryNurse</LocID><Text>Infirmiers de bloc</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterSpecialistNurse</LocID><Text>Infirmiers spécialisés</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterJanitor</LocID><Text>Agents d'entretien</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterVendorJanitor</LocID><Text>Vendeurs</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterManagerJanitor</LocID><Text>Responsables</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterLabSpecialist</LocID><Text>Laborantins</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterTechnologist</LocID><Text>Manipulateurs radio</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterUSGTechnologist</LocID><Text>Échographistes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterAdvancedBiochemist</LocID><Text>Biochimistes</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterNeurolog</LocID><Text>Neurologues</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterCardiolog</LocID><Text>Cardiologues</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterRadiolog</LocID><Text>Radiologues</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterPharmacologist</LocID><Text>Pharmaciens</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_CharacterParamedic</LocID><Text>Ambulanciers</Text></GameDBLocalizedString>
+        </LocalizedStrings>
+    </GameDBStringTable>
+</Database>
