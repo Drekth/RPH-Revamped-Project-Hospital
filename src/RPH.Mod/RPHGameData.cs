@@ -43,6 +43,30 @@ namespace RPH.Mod
             return component != null ? component.m_state.m_employeeType.ToString() : string.Empty;
         }
 
+        /// <summary>Department of the employee who performed a bedside / room examination, else the patient's.</summary>
+        public static Department ExaminingDepartment(BehaviorPatient patient, ProcedureScript procedureScript)
+        {
+            Entity employee = procedureScript != null && procedureScript.m_stateData.m_procedureScene != null
+                ? procedureScript.m_stateData.m_procedureScene.EmployeeCharacter
+                : null;
+            EmployeeComponent component = employee != null ? employee.GetComponent<EmployeeComponent>() : null;
+            return component != null ? component.m_state.m_department.GetEntity() : patient.GetDepartment();
+        }
+
+        /// <summary>Department of the lab that ran the test, else the patient's.</summary>
+        public static Department LabDepartment(LabProcedure procedure)
+        {
+            Room lab = procedure.m_state.m_statLab.GetEntity();
+            Department department = lab != null ? lab.m_roomPersistentData.m_department.GetEntity() : null;
+            if (department == null)
+            {
+                Entity patient = procedure.m_state.m_patient.GetEntity();
+                BehaviorPatient behavior = patient != null ? patient.GetComponent<BehaviorPatient>() : null;
+                department = behavior != null ? behavior.GetDepartment() : null;
+            }
+            return department;
+        }
+
         /// <summary>The diagnosis the patient is paid for, or empty.</summary>
         public static string PatientDiagnosisId(Entity patient)
         {

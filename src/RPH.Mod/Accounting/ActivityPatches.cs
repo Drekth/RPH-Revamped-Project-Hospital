@@ -7,7 +7,7 @@ using RPH.Core.Accounting;
 namespace RPH.Mod.Accounting
 {
     // Counts finished examinations, lab tests and treatments per department.
-    // In the base game they cost the hospital nothing; the counts prepare the price list of phase 3.
+    // In the base game they cost the hospital nothing; the counts feed the statistics (Economy bills them separately).
 
     /// <summary>Called exactly once when a bedside / room examination finishes, before the queue is cleared.</summary>
     [HarmonyPatch(typeof(BehaviorPatient), nameof(BehaviorPatient.UncoverSymptomsFromLastExamination))]
@@ -27,12 +27,7 @@ namespace RPH.Mod.Accounting
                 {
                     return;
                 }
-                Entity employee = procedureScript != null && procedureScript.m_stateData.m_procedureScene != null
-                    ? procedureScript.m_stateData.m_procedureScene.EmployeeCharacter
-                    : null;
-                string department = employee != null
-                    ? RPHGameData.EmployeeDepartmentId(employee)
-                    : RPHGameData.DepartmentId(__instance.GetDepartment());
+                string department = RPHGameData.DepartmentId(RPHGameData.ExaminingDepartment(__instance, procedureScript));
                 RPHLedgerService.Recorder.RecordActivity(ActivityKind.Examination, examination.DatabaseID.ToString(), department);
             }
             catch (Exception e)
@@ -54,15 +49,8 @@ namespace RPH.Mod.Accounting
                 {
                     return;
                 }
-                Room lab = __instance.m_state.m_statLab.GetEntity();
-                Department department = lab != null ? lab.m_roomPersistentData.m_department.GetEntity() : null;
-                if (department == null)
-                {
-                    Entity patient = __instance.m_state.m_patient.GetEntity();
-                    BehaviorPatient behavior = patient != null ? patient.GetComponent<BehaviorPatient>() : null;
-                    department = behavior != null ? behavior.GetDepartment() : null;
-                }
-                RPHLedgerService.Recorder.RecordActivity(ActivityKind.LabExamination, examination.DatabaseID.ToString(), RPHGameData.DepartmentId(department));
+                string department = RPHGameData.DepartmentId(RPHGameData.LabDepartment(__instance));
+                RPHLedgerService.Recorder.RecordActivity(ActivityKind.LabExamination, examination.DatabaseID.ToString(), department);
             }
             catch (Exception e)
             {

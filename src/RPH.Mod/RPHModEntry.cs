@@ -23,8 +23,13 @@ namespace RPH.Mod
         {
             RPHLog.Info("loaded v" + Version);
             ApplyPatches();
-            RPHCompatibility.Check();
             gameObject.AddComponent<RPHStatsWindow>();
+        }
+
+        /// <summary>The loader adds each addon's component as it loads it: wait for all of them before looking for other mods.</summary>
+        public void Start()
+        {
+            RPHCompatibility.Check();
         }
 
         /// <summary>One patch class at a time: a patch broken by a game update must not disable the others.</summary>

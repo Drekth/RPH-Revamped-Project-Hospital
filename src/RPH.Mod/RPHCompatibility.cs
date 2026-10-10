@@ -24,7 +24,7 @@ namespace RPH.Mod
             }
             if (PooKEconomyLoaded)
             {
-                RPHLog.Warn("PooK Hospital Economy detected: its own costs and payments are recorded like the game's. Statistics stay correct; future RPH economy modules will refuse to run alongside it.");
+                RPHLog.Warn("PooK Hospital Economy detected: its own costs and payments are recorded like the game's. Statistics stay correct; RPH exam billing is off so exams are not paid twice.");
             }
             if (HospitalEmsLoaded)
             {

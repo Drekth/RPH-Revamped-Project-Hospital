@@ -1,0 +1,68 @@
+<Database>
+    <!-- RPH Economy: one act = one price. The insurance pays the department that performed the exam
+         when the exam ends (lab tests: when the analysis ends). Exams without a line are free:
+         the doctor's own exams (interview, palpation, auscultation, basic checks...) and lab sampling.
+         Other mods can override any value by redefining its ID. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior). -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_BILLING_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Radiology -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_X_RAY_HEAD"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_X_RAY_TORSO"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_X_RAY_BACK"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_X_RAY_UPPER_LIMB"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_X_RAY_LOWER_LIMB"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_BARRIUM_SWALLOV_X_RAY"> <Value>200</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CT"> <Value>450</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CT_ENTEROGRAPHY"> <Value>550</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_MRI"> <Value>700</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_ANGIOGRAPHY"> <Value>800</Value> </GameDBTweakableInt>
+
+    <!-- Ultrasound -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_USG"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_ECHO"> <Value>180</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_TRANSIENT_ELASTOGRAPHY"> <Value>160</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_FAST"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CC_ECHO"> <Value>150</Value> </GameDBTweakableInt>
+
+    <!-- Cardiology, neurology, function tests -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_ECG"> <Value>50</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_HEART_MONITORING"> <Value>80</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_EEG"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_EMG"> <Value>140</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_SPIROMETRY"> <Value>50</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_AUDIOMETRY"> <Value>60</Value> </GameDBTweakableInt>
+
+    <!-- Ophthalmology -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_PERIMETRY"> <Value>90</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_TONOMETRY"> <Value>60</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_GONIOSCOPY"> <Value>80</Value> </GameDBTweakableInt>
+
+    <!-- Endoscopy and special tests -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_GASTROSCOPY"> <Value>350</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_LARYNGOSCOPY"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_SWEAT_CHLORIDE_TEST"> <Value>70</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_SKIN_INJECTION_TEST"> <Value>40</Value> </GameDBTweakableInt>
+
+    <!-- Bedside analyzers -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CRP"> <Value>30</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_URGENT_BLOOD_ANALYSIS"> <Value>60</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CC_BLOOD_ANALYSIS"> <Value>60</Value> </GameDBTweakableInt>
+
+    <!-- Laboratory: priced on the _TESTING exam, the _SAMPLING step is free -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_CBC_TESTING"> <Value>30</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_BLOOD_TEST_TESTING"> <Value>40</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_URINE_SAMPLE_ANALYSIS_TESTING"> <Value>25</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_STOOL_ANALYSIS_TESTING"> <Value>35</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_FECAL_ELASTASE_TEST_TESTING"> <Value>60</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_SEROLOGY_TESTING_TESTING"> <Value>70</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_ELISA_TESTING"> <Value>80</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_BACTERIA_CULTIVATION_TESTING"> <Value>70</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_FUNGAL_CULTIVATION_TESTING"> <Value>80</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_PCR_TESTING"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_RT_PCR_TESTING"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_SPINAL_FLUID_ANALYSIS_TESTING"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_PERITONEAL_FLUID_ANALYSIS_TESTING"> <Value>120</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_EXAM_PRICE_EXM_BIOPSY_TESTING"> <Value>200</Value> </GameDBTweakableInt>
+</Database>
