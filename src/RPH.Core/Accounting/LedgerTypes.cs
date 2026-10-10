@@ -23,6 +23,7 @@ namespace RPH.Core.Accounting
         WagesHospitalization,
         Wages,
         Training,
+        Maintenance,
 
         // Financing: moves the balance but is not profit or loss
         LoanTaken,

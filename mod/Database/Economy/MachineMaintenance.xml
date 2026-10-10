@@ -1,0 +1,71 @@
+<Database>
+    <!-- RPH Economy: machine wear, random breakdowns and paid repairs.
+         Every priced exam adds wear to the machine it used (0-100). A machine with a WEAR line below is
+         maintained: past 50 the game's janitors come to service it, at 100 it is broken (no exam can use it
+         until a janitor repairs it). Each use can also break it at random: the chance grows from BASE to MAX
+         with the wear. The hospital pays when a janitor finishes: REPAIR if serviced before breaking,
+         BREAKDOWN_REPAIR if it had broken. Machines without lines are untouched.
+         Starting values to be balanced with the statistics window. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior: no wear, no breakdown). -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_MAINTENANCE_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Chance that one use breaks the machine: BASE when new, MAX when fully worn (0.001 = 0.1 %). -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_BREAKDOWN_BASE_CHANCE"> <Value>0.001</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_BREAKDOWN_MAX_CHANCE"> <Value>0.04</Value> </GameDBTweakableFloat>
+
+    <!-- CT scanner -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_CT_1"> <Value>0.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_CT_1"> <Value>500</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_CT_1"> <Value>1500</Value> </GameDBTweakableInt>
+
+    <!-- MRI scanner -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_MRI_1"> <Value>0.6</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_MRI_1"> <Value>600</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_MRI_1"> <Value>1800</Value> </GameDBTweakableInt>
+
+    <!-- X-ray machine -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_XRAY_ANIM_TEST"> <Value>0.3</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_XRAY_ANIM_TEST"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_XRAY_ANIM_TEST"> <Value>450</Value> </GameDBTweakableInt>
+
+    <!-- Angiography -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_ANGIOGRAPH_ANIMATED"> <Value>0.6</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_ANGIOGRAPH_ANIMATED"> <Value>400</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_ANGIOGRAPH_ANIMATED"> <Value>1200</Value> </GameDBTweakableInt>
+
+    <!-- Ultrasound -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_ULTRASONOGRAPH"> <Value>0.2</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_ULTRASONOGRAPH"> <Value>100</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_ULTRASONOGRAPH"> <Value>300</Value> </GameDBTweakableInt>
+
+    <!-- FAST ultrasound -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_USG_FAST"> <Value>0.2</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_USG_FAST"> <Value>150</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_USG_FAST"> <Value>450</Value> </GameDBTweakableInt>
+
+    <!-- Elastograph -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_ELASTOGRAPH"> <Value>0.2</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_ELASTOGRAPH"> <Value>60</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_ELASTOGRAPH"> <Value>180</Value> </GameDBTweakableInt>
+
+    <!-- Hematology analyzer -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_HEMATOLOGY_ANALYZER"> <Value>0.1</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_HEMATOLOGY_ANALYZER"> <Value>40</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_HEMATOLOGY_ANALYZER"> <Value>120</Value> </GameDBTweakableInt>
+
+    <!-- Lab analyzer -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_LAB_ANALYZER"> <Value>0.1</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_LAB_ANALYZER"> <Value>30</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_LAB_ANALYZER"> <Value>90</Value> </GameDBTweakableInt>
+
+    <!-- PCR thermal cycler -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_THERMAL_CYCLER"> <Value>0.2</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_THERMAL_CYCLER"> <Value>80</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_THERMAL_CYCLER"> <Value>240</Value> </GameDBTweakableInt>
+
+    <!-- RIA / ELISA reader -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_MACHINE_WEAR_OBJECT_RIA"> <Value>0.15</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_REPAIR_OBJECT_RIA"> <Value>40</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_MACHINE_BREAKDOWN_REPAIR_OBJECT_RIA"> <Value>120</Value> </GameDBTweakableInt>
+</Database>

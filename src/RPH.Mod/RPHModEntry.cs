@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using HarmonyLib;
 using RPH.Mod.Accounting;
+using RPH.Mod.Economy;
 using RPH.Mod.Stats;
 
 namespace RPH.Mod
@@ -61,6 +62,7 @@ namespace RPH.Mod
         public void Update()
         {
             RPHLedgerService.Tick();
+            MachineMaintenance.Tick();
         }
     }
 }
