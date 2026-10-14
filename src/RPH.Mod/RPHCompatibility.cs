@@ -7,6 +7,7 @@ namespace RPH.Mod
     {
         public static bool PooKEconomyLoaded { get; private set; }
         public static bool HospitalEmsLoaded { get; private set; }
+        public static bool ShiftHandoverModLoaded { get; private set; }
 
         public static void Check()
         {
@@ -21,6 +22,10 @@ namespace RPH.Mod
                 {
                     HospitalEmsLoaded = true;
                 }
+                else if (name.IndexOf("Handover", StringComparison.OrdinalIgnoreCase) >= 0 && !name.StartsWith("RPH", StringComparison.Ordinal))
+                {
+                    ShiftHandoverModLoaded = true;
+                }
             }
             if (PooKEconomyLoaded)
             {
@@ -29,6 +34,10 @@ namespace RPH.Mod
             if (HospitalEmsLoaded)
             {
                 RPHLog.Info("Hospital EMS detected.");
+            }
+            if (ShiftHandoverModLoaded)
+            {
+                RPHLog.Warn("A shift handover mod is loaded: RPH shift handover is off.");
             }
         }
     }

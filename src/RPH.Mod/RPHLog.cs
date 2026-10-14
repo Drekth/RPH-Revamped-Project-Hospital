@@ -126,7 +126,9 @@ namespace RPH.Mod
         public const string Exams = "EXAMS";
         /// <summary>A machine broke down or was repaired.</summary>
         public const string Maintenance = "MAINTENANCE";
+        /// <summary>Midnight: shift handover overlap since the last midnight (early arrivals, late departures, minutes, pay).</summary>
+        public const string Handover = "HANDOVER";
 
-        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE";
+        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE HANDOVER";
     }
 }

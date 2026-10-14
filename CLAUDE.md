@@ -83,6 +83,7 @@ Line numbers drift between game versions: re-grep the decompiled code after ever
 | Prestige | `DailyStatistics.m_reputation` (0–1) | Daily score; closed days in `Hospital.m_state.m_statisticsHistory`. Patient count modifier: `Hospital.GetPrestigePatientsModifier(float)`. |
 | Patient spawn | `InsuranceCompany.CalculatePatientCounts`, `BehaviorPatient.RandomizeMedicalCondition` | Daily counts per insurer (walk-in, ambulance, helicopter index); diagnosis drawn per department, weighted by `GameDBDiagnosisOccurrence`. |
 | Salary | `Lopital.EmployeeComponent` (`SalaryBase + …`) | Fixed at hire. |
+| Shift change | `DayTime.GetShift()` (staff hours 7–20 from `SCHEDULE_OPENING_HOURS_STAFF`), `Behavior{Doctor,Nurse,LabSpecialist}.UpdateStateIdle` / `UpdateStateCommuting` / `SwitchState` | Each employee has `EmployeeComponent.m_shift`; the Idle update sends them home when `GetShift() != m_shift`. `m_commuteTime < 0` = leaves home early (`ShouldStartCommuting`, hard-coded 7/20), set at midnight in `EmployeeComponent.OnDayStart`. Only the doctor's Commuting state waits (`GetOppositeShiftEmployee`). Wages: `Hospital.PayWages(shift)` from `MapEditorController`, the full wage per shift. |
 | Hiring | `Lopital.HiringManager`, `HiringPanelController` | Agency prices hard-coded (2 500 / 1 000). |
 | Insurance | `Lopital.InsuranceManager`, `Lopital.InsuranceCompany` | Objectives and rewards. |
 | Management panel | `HospitalManagementPanelController` | Tabs: Departments, Insurance, Statistics, Budget, Ambulances. |
@@ -126,6 +127,7 @@ src/RPH.Mod/           net35; refs game DLLs + Harmony.
   Accounting/          shared: ledger service + the patches that feed it (money, activity, save)
   UI/                  shared: uGUI kit in the game's light theme (RPHUi)
   Stats/               module: advanced statistics window + its tab button
+  HR/                  module: shift handover (staff, porters next)
   <Module>/            next modules: Economy/, HR/, Equipment/, Research/...
 tests/RPH.Core.Tests/  xUnit on net10.0, tests RPH.Core only. CI runs them (.github/workflows).
 mod/Database/          shipped as-is; the game reads Database/ recursively.

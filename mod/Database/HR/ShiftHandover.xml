@@ -1,0 +1,31 @@
+<Database>
+    <!-- RPH HR: shift handover. Doctors, nurses and lab specialists work a day shift (07-20) and a night shift (20-07).
+         - Staff leave home EARLY_MIN..EARLY_MAX minutes before their shift (the game's own commute; late commuters
+           keep their vanilla delay). A doctor no longer waits for the previous doctor to leave before going to the desk.
+         - The outgoing employee stays at the post for HANDOVER_MINUTES after the end of the shift, then leaves.
+           If the relief is not in the building yet, the outgoing covers up to a limit drawn between COVER_MIN and
+           COVER_MAX minutes per employee and day. Nobody to hand over to: the outgoing leaves at once, as in vanilla.
+         - Time at the post outside the shift (early arrival, late departure) is paid at
+           PAY_PERCENT % of the shift's hourly rate (wage / length of the shift) and shows in the ledger as "Shift
+           handover overlap". Longer than MAX_PAID_MINUTES it is not a handover (overtime on a procedure, closed
+           department) and is not paid. Janitors are not concerned. Switched off when another handover mod is loaded.
+         Starting values to be balanced with the statistics window. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior). -->
+    <GameDBTweakableInt ID="RPH_HR_SHIFT_HANDOVER_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Minutes before the shift when the employee leaves home. -->
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_EARLY_MIN"> <Value>25</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_EARLY_MAX"> <Value>40</Value> </GameDBTweakableFloat>
+
+    <!-- Minutes the outgoing employee stays after the end of the shift to hand over to the relief. -->
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_MINUTES"> <Value>5</Value> </GameDBTweakableFloat>
+
+    <!-- Minutes the outgoing employee covers a relief that is not there yet. -->
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_COVER_MIN"> <Value>15</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_COVER_MAX"> <Value>30</Value> </GameDBTweakableFloat>
+
+    <!-- Pay of the overlap, in % of the hourly rate, and the most minutes paid per employee and shift. -->
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_PAY_PERCENT"> <Value>100</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_HR_SHIFT_HANDOVER_MAX_PAID_MINUTES"> <Value>90</Value> </GameDBTweakableFloat>
+</Database>

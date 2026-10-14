@@ -252,9 +252,12 @@ préréglage.
 
 1. **Mesurer d'abord** : onglet Personnel (coût et productivité par employé, heures, départs) et
    alertes de personnel (département sous le minimum du jeu, employé épuisé, employé sans poste).
-2. **Relève des équipes** : le personnel arrive avant le début de son équipe, la transmission se fait
-   au poste, l'équipe sortante couvre un retard de 15 à 30 minutes. Le chevauchement est payé et
-   visible dans le grand livre.
+2. **Relève des équipes** (fait, à vérifier en jeu) : médecins, infirmiers et laborantins partent de chez
+   eux 25 à 40 minutes avant leur équipe (le trajet existe déjà dans le jeu), le médecin n'attend plus le
+   départ de son prédécesseur, la transmission se fait au poste (5 minutes), l'équipe sortante couvre un
+   retard de 15 à 30 minutes. Le temps passé au poste hors de l'équipe est payé au taux horaire de
+   l'équipe (salaire / durée) et apparaît dans le grand livre sous « Chevauchement des équipes »
+   (`mod/Database/HR/ShiftHandover.xml`). Coupé quand un autre mod de relève est chargé.
 3. **Brancardiers** : nouveau rôle et nouveau local ; transport des patients (brancard, fauteuil) et
    des échantillons, par tournées ; infirmiers et laborantins prennent le relais quand il n'y en a pas.
    Vérifier d'abord si les sprites du jeu suffisent (tenue recolorée) avant de dessiner un personnage.
