@@ -20,14 +20,6 @@ public class MoneyFormatTests
     public void Money(long amount, string expected) => Assert.Equal(expected, MoneyFormat.Money(amount));
 
     [Theory]
-    [InlineData(48200, "+$48K")]
-    [InlineData(-9100, "-$9K")]
-    [InlineData(950, "+$950")]
-    [InlineData(2_450_000, "+$2.4M")]
-    [InlineData(0, "$0")]
-    public void ShortMoney(long amount, string expected) => Assert.Equal(expected, MoneyFormat.ShortMoney(amount));
-
-    [Theory]
     [InlineData(46, 100, "46%")]
     [InlineData(1, 1000, "<1%")]
     [InlineData(0, 100, "0%")]

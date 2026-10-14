@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using GLib;
 using Lopital;
@@ -90,39 +89,6 @@ namespace RPH.Mod
                 return RPHText.Get("RPH_HOSPITAL_WIDE");
             }
             return EntryName<GameDBDepartment>(id);
-        }
-
-        public static string ProcedureName(ActivityKind kind, string id)
-        {
-            return kind == ActivityKind.Treatment || kind == ActivityKind.Surgery
-                ? EntryName<GameDBTreatment>(id)
-                : EntryName<GameDBExamination>(id);
-        }
-
-        public static string DiagnosisName(string id)
-        {
-            return EntryName<GameDBMedicalCondition>(id);
-        }
-
-        public static string RoleName(string role)
-        {
-            if (string.IsNullOrEmpty(role))
-            {
-                return string.Empty;
-            }
-            string key = "RPH_ROLE_" + role;
-            string text = RPHText.Get(key);
-            return text.StartsWith("!LOC!", StringComparison.Ordinal) ? role.Replace("Character", string.Empty) : text;
-        }
-
-        /// <summary>What an expense line was for: a hospitalization type (inpatient care), else an employee role (wages).</summary>
-        public static string ExpenseSourceName(string source)
-        {
-            if (!string.IsNullOrEmpty(source) && Database.Instance.GetEntry<GameDBTreatment>(source) != null)
-            {
-                return EntryName<GameDBTreatment>(source);
-            }
-            return RoleName(source);
         }
 
         public static string CategoryName(LedgerCategory category)

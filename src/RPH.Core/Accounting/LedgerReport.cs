@@ -19,19 +19,10 @@ namespace RPH.Core.Accounting
         }
     }
 
-    public sealed class DayProfit
-    {
-        public int Day;
-        public long Profit;
-        public bool Imported;
-        public bool Partial;
-    }
-
     /// <summary>Read-only view of the ledger over a range of days.</summary>
     public sealed class LedgerReport
     {
         private readonly List<LedgerLine> m_lines = new List<LedgerLine>();
-        private readonly List<ActivityLine> m_activities = new List<ActivityLine>();
 
         public LedgerReport(Ledger ledger, int fromDay, int toDay)
         {
@@ -39,7 +30,6 @@ namespace RPH.Core.Accounting
             ToDay = Math.Max(fromDay, toDay);
 
             var lineIndex = new Dictionary<string, LedgerLine>();
-            var activityIndex = new Dictionary<string, ActivityLine>();
             foreach (DayBook book in ledger.Days)
             {
                 if (book.Day < FromDay || book.Day > ToDay)
@@ -85,18 +75,6 @@ namespace RPH.Core.Accounting
                             break;
                     }
                 }
-                foreach (ActivityLine activity in book.Activities)
-                {
-                    string key = ActivityLine.Key(activity.Kind, activity.ProcedureId, activity.Department);
-                    ActivityLine merged;
-                    if (!activityIndex.TryGetValue(key, out merged))
-                    {
-                        merged = new ActivityLine { Kind = activity.Kind, ProcedureId = activity.ProcedureId, Department = activity.Department };
-                        activityIndex.Add(key, merged);
-                        m_activities.Add(merged);
-                    }
-                    merged.Count += activity.Count;
-                }
             }
         }
 
@@ -124,11 +102,6 @@ namespace RPH.Core.Accounting
         public IList<LedgerLine> Lines
         {
             get { return m_lines; }
-        }
-
-        public IList<ActivityLine> Activities
-        {
-            get { return m_activities; }
         }
 
         /// <summary>Sums the lines that pass <paramref name="filter"/> under <paramref name="keySelector"/>. Financing is left out.</summary>
@@ -159,29 +132,6 @@ namespace RPH.Core.Accounting
                     total.Out += line.Amount;
                 }
                 total.Count += line.Count;
-            }
-            return result;
-        }
-
-        /// <summary>Profit of every day in the ledger between the two days, oldest first. Days without data are skipped.</summary>
-        public static List<DayProfit> DailyProfit(Ledger ledger, int fromDay, int toDay)
-        {
-            var result = new List<DayProfit>();
-            foreach (DayBook book in ledger.Days)
-            {
-                if (book.Day < fromDay || book.Day > toDay)
-                {
-                    continue;
-                }
-                long profit = 0;
-                foreach (LedgerLine line in book.Lines)
-                {
-                    if (line.Group != CategoryGroup.Financing)
-                    {
-                        profit += line.Amount;
-                    }
-                }
-                result.Add(new DayProfit { Day = book.Day, Profit = profit, Imported = book.Imported, Partial = book.IsPartial });
             }
             return result;
         }

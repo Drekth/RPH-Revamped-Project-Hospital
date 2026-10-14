@@ -114,7 +114,7 @@ Règles :
 | PooK Hospital Economy (N0d PooK) | Chargeur natif, Windows seulement | Hospitalisation payée à l'heure chaque soir ; coût des examens ; coût journalier des lits selon le lieu des soins (service, USC, USI, trauma) ; recettes des arrivées en ambulance et en hélicoptère ; liste de candidats gratuite et atouts cachés payants ; projets : nouveaux assureurs, amendes | macOS ; prix dans les infobulles (demandé par ses joueurs) | 3, 4 |
 | Bottleneck Monitor (LiPadu) | Chargeur natif, lecture seule | Panneau des goulots : files, examens bloqués, lits, personnel ; alertes critiques ou à surveiller ; clic qui centre la caméra ; action conseillée ; seuils réglables ; mise à jour depuis le dossier Workshop | Historique par jour et tendances dans la fenêtre de stats | 4, 5, 11 |
 | Hospital Shift Handover (Loupito75) | BepInEx | Arrivée avant l'équipe, transmission au même poste, l'équipe sortante couvre un retard, vestiaires | Temps de chevauchement payé et visible dans le grand livre | 4 |
-| Hospital Porters (Loupito75) | BepInEx | Rôle de brancardier, local dédié, transport des patients et des échantillons, tournées, repli sur infirmiers et laborantins | Coût et productivité dans l'onglet Personnel | 4 |
+| Hospital Porters (Loupito75) | BepInEx | Rôle de brancardier, local dédié, transport des patients et des échantillons, tournées, repli sur infirmiers et laborantins | Coût et productivité dans la section Personnel | 4 |
 | Hospital Traffic Control (Loupito75) | BepInEx | Portes à sens unique, règles d'accès, pas de raccourci par les salles, agents d'entretien plus discrets | — | 4, 5 |
 | Hospital Care Level Transfer (Loupito75) | BepInEx | Passage d'USC en service conventionnel, automatique ou manuel, avec garde-fous ; infobulle qui explique un refus | Débloquer aussi l'observation des urgences | 5 |
 | Hospital EMS (Loupito75) | BepInEx | Bilan et soins dans l'ambulance ou l'hélicoptère ; correctifs du brancard et de la réservation de lit | Types d'ambulances, coût des soins en route | 7 |
@@ -160,7 +160,9 @@ faite en avance. Écarts par rapport au plan initial, pour rester simple :
 - la fenêtre est construite en code avec la police, les icônes de départements, les couleurs du
   Budget et un bouton d'onglet cloné du jeu ; les prefabs `Prefabs/UI/*` ne sont pas utilisés ;
 - pas d'onglet « Patients » ni d'infobulles : chaque ligne affiche directement son nombre (« ×87 ») ;
-- pas de registre d'onglets générique : chaque phase ajoutera son onglet directement.
+- une section par domaine dans une barre latérale, chacune avec ses onglets ; pas de registre générique :
+  chaque domaine ajoutera sa section directement. La fenêtre a sa propre mise en page, distincte de
+  la capture de référence de PooK.
 
 ### Phase 0 – Fondations
 
@@ -204,7 +206,9 @@ sauvegarde → quitter → recharger.
    `icons.png` et les couleurs de l'onglet Budget du jeu.
 2. Accès par un nouvel onglet du panneau de gestion de l'hôpital (Postfix sur
    `HospitalManagementPanelController`) et par un raccourci clavier.
-3. Onglets : Résumé, Dépenses, Recettes, Équipes, Départements, Équipements, Patients.
+3. Une section par domaine (barre latérale). Budget : Résumé (compte de résultat : recettes et dépenses
+   par catégorie, résultat, trésorerie), Recettes et Dépenses (par service, puis par catégorie). Les
+   autres domaines (Personnel, Matériel, Recherche) ajoutent leur section dans leur phase.
    Périodes : aujourd'hui, hier, 7 jours, 30 jours, tout, ou un jour précis.
 4. Explication au survol de chaque ligne (exemple : « Scanner : 87 fois × 5 250 $ »).
 5. Textes en anglais et en français via les tables de chaînes du jeu.
@@ -250,7 +254,7 @@ préréglage.
 
 ### Phase 4 – Personnel (priorité après l'économie)
 
-1. **Mesurer d'abord** : onglet Personnel (coût et productivité par employé, heures, départs) et
+1. **Mesurer d'abord** : section Personnel (coût et productivité par employé, heures, départs) et
    alertes de personnel (département sous le minimum du jeu, employé épuisé, employé sans poste).
 2. **Relève des équipes** (fait, à vérifier en jeu) : médecins, infirmiers et laborantins partent de chez
    eux 25 à 40 minutes avant leur équipe (le trajet existe déjà dans le jeu), le médecin n'attend plus le
@@ -282,7 +286,7 @@ préréglage.
    devant (2 cases) et attend la fin, 30 minutes au plus, puis entre quand même. Réglages :
    `mod/Database/Cleaning/Cleaning.xml`. Ligne `CLEANING` du journal d'équilibrage à minuit.
 
-**Terminé quand** l'hôpital ne se bloque plus à 7 h ni à 20 h, et que l'onglet Personnel explique
+**Terminé quand** l'hôpital ne se bloque plus à 7 h ni à 20 h, et que la section Personnel explique
 chaque démission.
 
 ### Phase 5 – Flux et goulots
@@ -315,7 +319,7 @@ chaque démission.
 2. Gammes d'équipement (basique, standard, haut de gamme) : vitesse, précision du diagnostic, confort.
 3. Nouveaux objets avec nos propres graphismes (atlas isométriques 4 directions, au format des
    tutoriels officiels), listés dans `CREDITS.md`.
-4. Onglet Matériel : taux d'utilisation, rentabilité par machine, pannes.
+4. Section Matériel des statistiques : taux d'utilisation, rentabilité par machine, pannes.
 
 ### Phase 7 – Urgences et préhospitalier
 
@@ -345,7 +349,7 @@ chaque démission.
    Vérifier si le panneau d'arbre de dépendances du jeu (`DependencyTreePanelController`) peut servir
    de base.
 3. Hôpital universitaire : internes et étudiants.
-4. Onglet stats Recherche.
+4. Section Recherche des statistiques.
 
 ### Phase 10 – Domaines (départements et contenu médical)
 

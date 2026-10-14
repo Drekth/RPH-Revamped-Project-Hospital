@@ -16,13 +16,10 @@ namespace RPH.Mod.UI
         public static readonly Color CellColor = new Color(0.3f, 0.3f, 0.3f, 1f);
         public static readonly Color SubPanelColor = new Color(0.93f, 0.93f, 0.93f, 1f);
         public static readonly Color SeparatorColor = new Color(0.31f, 0.31f, 0.31f, 0.86f);
-        public static readonly Color RowAltColor = new Color(0f, 0f, 0f, 0.04f);
         public static readonly Color ButtonColor = new Color(0.86f, 0.86f, 0.86f, 1f);
         public static readonly Color TextColor = new Color(0.2f, 0.2f, 0.2f, 1f);
         public static readonly Color MutedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         public static readonly Color LightTextColor = new Color(0.95f, 0.95f, 0.95f, 1f);
-        public static readonly Color DimLightTextColor = new Color(0.75f, 0.75f, 0.75f, 1f);
-        public static readonly Color ZeroLineColor = new Color(1f, 1f, 1f, 0.25f);
 
         private static Font s_font;
 
@@ -35,11 +32,6 @@ namespace RPH.Mod.UI
         public static Color Red
         {
             get { return UISettings.Instance != null ? UISettings.Instance.COLOR_BUDGET_RED : new Color(1f, 0.5f, 0.5f); }
-        }
-
-        public static Color Yellow
-        {
-            get { return UISettings.Instance != null ? UISettings.Instance.COLOR_BUDGET_YELLOW : new Color(1f, 0.9f, 0.4f); }
         }
 
         /// <summary>Text color of a money value on a dark cell, like the game's budget tab.</summary>

@@ -171,7 +171,6 @@ public class LedgerReportTests
 
         Assert.Equal(14_000, report.MoneyIn);
         Assert.Equal(0, report.MoneyOut);
-        Assert.Single(report.Activities);
     }
 
     [Fact]
@@ -186,14 +185,6 @@ public class LedgerReportTests
         Assert.Equal(13_000, byDepartment["DPT_EMERGENCY"].Net);
         Assert.Equal(-5_000, byDepartment[""].Net);
         Assert.False(byDepartment.ContainsKey("LOAN"));
-    }
-
-    [Fact]
-    public void DailyProfitIgnoresLoans()
-    {
-        var days = LedgerReport.DailyProfit(SampleLedger(), 1, 2);
-
-        Assert.Equal(new long[] { 2_000, 14_000 }, days.Select(d => d.Profit).ToArray());
     }
 }
 
