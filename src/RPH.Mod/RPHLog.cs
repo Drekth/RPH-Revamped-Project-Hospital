@@ -129,6 +129,9 @@ namespace RPH.Mod
         /// <summary>Midnight: shift handover overlap since the last midnight (early arrivals, late departures, minutes, pay).</summary>
         public const string Handover = "HANDOVER";
 
-        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE HANDOVER";
+        /// <summary>Midnight: porters hired, times a porter was picked to move a patient, times a nurse had to since none was free.</summary>
+        public const string Porters = "PORTERS";
+
+        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE HANDOVER PORTERS";
     }
 }

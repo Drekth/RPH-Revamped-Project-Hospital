@@ -258,9 +258,16 @@ préréglage.
    retard de 15 à 30 minutes. Le temps passé au poste hors de l'équipe est payé au taux horaire de
    l'équipe (salaire / durée) et apparaît dans le grand livre sous « Chevauchement des équipes »
    (`mod/Database/HR/ShiftHandover.xml`). Coupé quand un autre mod de relève est chargé.
-3. **Brancardiers** : nouveau rôle et nouveau local ; transport des patients (brancard, fauteuil) et
-   des échantillons, par tournées ; infirmiers et laborantins prennent le relais quand il n'y en a pas.
-   Vérifier d'abord si les sprites du jeu suffisent (tenue recolorée) avant de dessiner un personnage.
+3. **Brancardiers** (premier jet fait, à vérifier en jeu) : un brancardier est une infirmière payée 70 % du
+   salaire d'une infirmière, qui ne déplace que des patients (brancard, fauteuil). Il n'appartient à aucun
+   service (salaire et frais d'agence « hôpital entier » dans le grand livre), mais il est rattaché à son
+   local : un « local des brancardiers » (locaux partagés de tout service, un bureau avec PC par brancardier),
+   il revient toujours à son étage et ne va chercher que les patients de cet étage, puis va où il faut. À
+   l'étage du patient, le brancardier libre de l'équipe en cours le plus proche passe avant ; sinon une
+   infirmière prend le relais comme dans le jeu. Embauche et licenciement dans la fenêtre Brancardiers (F10),
+   tunique d'une autre couleur (les sprites du jeu suffisent), liste enregistrée à côté de la sauvegarde
+   (`<save>.rph.porters.txt`). Réglages : `mod/Database/HR/Porters.xml`. Reste : transport des
+   échantillons (le jeu n'en porte aucun : le laborantin va chercher le patient) et tournées plus poussées.
 4. **Agence et marché de l'emploi** : liste de candidats gratuite, atouts cachés révélés contre
    paiement ; vivier selon le prestige et le salaire proposé, délai de recrutement, postes ouverts.
 5. **Salaires** : négociation à l'embauche, augmentations, primes.

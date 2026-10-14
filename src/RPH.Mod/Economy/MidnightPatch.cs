@@ -20,6 +20,7 @@ namespace RPH.Mod.Economy
             Run(RenownPatients.LogDay, nameof(RenownPatients));
             Run(ExamBilling.LogDay, nameof(ExamBilling));
             Run(ShiftHandover.LogDay, nameof(ShiftHandover));
+            Run(PorterStaff.LogDay, nameof(PorterStaff));
         }
 
         /// <summary>One feature failing must not stop the others.</summary>

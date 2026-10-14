@@ -8,6 +8,24 @@
         <LocalizedStrings>
             <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS</LocID><Text>Porters' room</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS_DESCRIPTION</LocID><Text>All porters of the hospital are based in here. They move patients on stretchers and wheelchairs for every department. \n\nMin. Staff requirements: \n1x Porter</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_TITLE</LocID><Text>Porters</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRE_DAY</LocID><Text>Hire a day porter ({1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRE_NIGHT</LocID><Text>Hire a night porter ({1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HINT</LocID><Text>Porters belong to no department: they come from the agency and work from a porters' room. Each one waits in his room, always comes back to its floor and only fetches patients who are on that floor. With none free, a nurse moves the patient.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_NONE</LocID><Text>No porters yet. Build a porters' room (shared rooms of any department) with a PC desk, then hire.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_NAME</LocID><Text>Name</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_SHIFT</LocID><Text>Shift</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_FLOOR</LocID><Text>Floor</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_WAGE</LocID><Text>Wage</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_SHIFT_DAY</LocID><Text>Day</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_SHIFT_NIGHT</LocID><Text>Night</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_FIRE</LocID><Text>Fire</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRED</LocID><Text>Porter hired.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_OFF</LocID><Text>Porters are switched off.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_LIMIT</LocID><Text>The hospital has reached its employee limit.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_MONEY</LocID><Text>Not enough money to pay the agency.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_ROOM</LocID><Text>No free desk in a valid porters' room for this shift. Build a porters' room with a PC desk first.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_FAILED</LocID><Text>The porter could not be hired (see Player.log).</Text></GameDBLocalizedString>
         </LocalizedStrings>
     </GameDBStringTable>
 </Database>

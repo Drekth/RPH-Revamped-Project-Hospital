@@ -8,6 +8,24 @@
         <LocalizedStrings>
             <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS</LocID><Text>Local des brancardiers</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS_DESCRIPTION</LocID><Text>Tous les brancardiers de l'hôpital sont basés ici. Ils transportent les patients en brancard et en fauteuil pour tous les services. \n\nPersonnel minimum : \n1x Brancardier</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_TITLE</LocID><Text>Brancardiers</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRE_DAY</LocID><Text>Embaucher un brancardier de jour ({1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRE_NIGHT</LocID><Text>Embaucher un brancardier de nuit ({1})</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HINT</LocID><Text>Les brancardiers n'appartiennent à aucun service : ils viennent de l'agence et travaillent depuis un local des brancardiers. Chacun attend dans son local, revient toujours à son étage et ne va chercher que les patients de cet étage. Si aucun n'est libre, une infirmière transporte le patient.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_NONE</LocID><Text>Aucun brancardier. Construisez un local des brancardiers (locaux partagés d'un service) avec un bureau équipé d'un PC, puis embauchez.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_NAME</LocID><Text>Nom</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_SHIFT</LocID><Text>Équipe</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_FLOOR</LocID><Text>Étage</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_COL_WAGE</LocID><Text>Salaire</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_SHIFT_DAY</LocID><Text>Jour</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_SHIFT_NIGHT</LocID><Text>Nuit</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_FIRE</LocID><Text>Licencier</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_HIRED</LocID><Text>Brancardier embauché.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_OFF</LocID><Text>Les brancardiers sont désactivés.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_LIMIT</LocID><Text>L'hôpital a atteint sa limite d'employés.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_MONEY</LocID><Text>Pas assez d'argent pour payer l'agence.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_ROOM</LocID><Text>Aucun bureau libre dans un local des brancardiers valide pour cette équipe. Construisez d'abord un local des brancardiers avec un bureau et un PC.</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_PORTERS_ERR_FAILED</LocID><Text>Le brancardier n'a pas pu être embauché (voir Player.log).</Text></GameDBLocalizedString>
         </LocalizedStrings>
     </GameDBStringTable>
 </Database>

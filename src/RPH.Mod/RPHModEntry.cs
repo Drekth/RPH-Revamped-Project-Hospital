@@ -26,6 +26,7 @@ namespace RPH.Mod
             RPHLog.Info("loaded v" + Version);
             ApplyPatches();
             gameObject.AddComponent<RPHStatsWindow>();
+            gameObject.AddComponent<RPHPortersWindow>();
         }
 
         /// <summary>The loader adds each addon's component as it loads it: wait for all of them before looking for other mods.</summary>
@@ -65,6 +66,7 @@ namespace RPH.Mod
             RPHLedgerService.Tick();
             MachineMaintenance.Tick();
             PortersRoom.Tick();
+            PorterStaff.Tick();
         }
     }
 }

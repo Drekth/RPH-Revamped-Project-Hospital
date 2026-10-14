@@ -235,7 +235,8 @@ namespace RPH.Mod.HR
             {
                 BookDepartmentWages(department, employee, amount);
             }
-            RPHLedgerService.Recorder.BeginScope(RPHGameData.DepartmentId(department), RPHGameData.EmployeeRole(entity));
+            bool porter = PorterStaff.IsPorter(entity);
+            RPHLedgerService.Recorder.BeginScope(porter ? string.Empty : RPHGameData.DepartmentId(department), porter ? PorterStaff.ExpenseSource : RPHGameData.EmployeeRole(entity));
             try
             {
                 Hospital.Instance.Spend(amount, ExpenseCategory.WAGES);

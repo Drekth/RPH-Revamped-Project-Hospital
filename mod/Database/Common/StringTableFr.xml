@@ -40,6 +40,7 @@
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterReceptionist</LocID><Text>Réceptionnistes</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterSurgeryNurse</LocID><Text>Infirmiers de bloc</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterSpecialistNurse</LocID><Text>Infirmiers spécialisés</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_ROLE_Porter</LocID><Text>Brancardiers</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterJanitor</LocID><Text>Agents d'entretien</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterVendorJanitor</LocID><Text>Vendeurs</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_ROLE_CharacterManagerJanitor</LocID><Text>Responsables</Text></GameDBLocalizedString>

@@ -85,6 +85,9 @@ Line numbers drift between game versions: re-grep the decompiled code after ever
 | Salary | `Lopital.EmployeeComponent` (`SalaryBase + …`) | Fixed at hire. |
 | Shift change | `DayTime.GetShift()` (staff hours 7–20 from `SCHEDULE_OPENING_HOURS_STAFF`), `Behavior{Doctor,Nurse,LabSpecialist}.UpdateStateIdle` / `UpdateStateCommuting` / `SwitchState` | Each employee has `EmployeeComponent.m_shift`; the Idle update sends them home when `GetShift() != m_shift`. `m_commuteTime < 0` = leaves home early (`ShouldStartCommuting`, hard-coded 7/20), set at midnight in `EmployeeComponent.OnDayStart`. Only the doctor's Commuting state waits (`GetOppositeShiftEmployee`). Wages: `Hospital.PayWages(shift)` from `MapEditorController`, the full wage per shift. |
 | Hiring | `Lopital.HiringManager`, `HiringPanelController` | Agency prices hard-coded (2 500 / 1 000). |
+| Patient transport | `StretcherComponent.SetDestination(TileObject, …, Entity movingCharacter, …)` | The only place that picks who moves a patient: `FindNurseAssignedToARoomType(NURSES_STATION, free, dept, EMPL_ROLE_PATIENT_TRANSFERS)` when `movingCharacter` is null. The stretcher is then searched in the **mover's department** (`EmployeeComponent.m_department`). |
+| Workspaces | `MapScriptInterface.FindClosestWorkspace`, `Behavior.GetWorkspaceRoomTag()` | A free object tagged `pc` in a room of the **employee's department** whose type has the tag. Room types are not inferred: the player picks one from the department's `Required/SharedRooms*` lists (`GameDBDepartment`, private setters). |
+| Employees | `HiringManager.Hire(dept, floor, pos)`, `Floor.AddCharacter` | `AddCharacter` files the employee in `Hospital.m_activeDepartment`. `DPT_DEFAULT` is a hidden department outside `Hospital.m_departments` (not paid). |
 | Insurance | `Lopital.InsuranceManager`, `Lopital.InsuranceCompany` | Objectives and rewards. |
 | Management panel | `HospitalManagementPanelController` | Tabs: Departments, Insurance, Statistics, Budget, Ambulances. |
 | Tweakables | `<StreamingAssets>/Database/Tweakables.xml` (+ `TweakablesPatch38/39.xml`) | 89 values, overridable from mod XML. |
@@ -127,7 +130,7 @@ src/RPH.Mod/           net35; refs game DLLs + Harmony.
   Accounting/          shared: ledger service + the patches that feed it (money, activity, save)
   UI/                  shared: uGUI kit in the game's light theme (RPHUi)
   Stats/               module: advanced statistics window + its tab button
-  HR/                  module: shift handover (staff, porters next)
+  HR/                  module: shift handover, porters (room, staff, dispatch, window F10)
   <Module>/            next modules: Economy/, HR/, Equipment/, Research/...
 tests/RPH.Core.Tests/  xUnit on net10.0, tests RPH.Core only. CI runs them (.github/workflows).
 mod/Database/          shipped as-is; the game reads Database/ recursively.
@@ -173,7 +176,7 @@ dotnet test tests/RPH.Core.Tests
 
 First time: `cp local.props.example local.props` (and fix `GameDir` if needed). A Release build
 copies the mod to the install target. Check in game: `Player.log` contains `[RPH] loaded`,
-`[RPH] Harmony: N patches applied, 0 failed` and `[RPH] Ledger ready`. F9 opens the window.
+`[RPH] Harmony: N patches applied, 0 failed` and `[RPH] Ledger ready`. F9 opens the window, F10 the porters window.
 Any `[RPH] Day N: ... not explained by the ledger` line means a money path is not hooked.
 For economy features, the totals shown by our window must match the game's Budget tab to the dollar.
 
