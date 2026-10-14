@@ -86,6 +86,8 @@ namespace RPH.Mod.Economy
                     __instance.m_state.m_gameDBObject.Entry.DatabaseID.ToString());
                 scoped = true;
                 Hospital.Instance.Spend(__state, ExpenseCategory.PENALTIES);
+                RPHLog.Balance(BalanceSection.Maintenance, "event=repair machine=" + __instance.m_state.m_gameDBObject.Entry.DatabaseID
+                    + " department=" + RPHGameData.DepartmentId(__instance.m_state.m_department.GetEntity()) + " cost=" + __state);
             }
             catch (Exception e)
             {

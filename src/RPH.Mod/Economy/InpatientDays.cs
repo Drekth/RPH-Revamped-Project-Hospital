@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GLib;
 using Lopital;
 using RPH.Core.Accounting;
@@ -34,6 +35,7 @@ namespace RPH.Mod.Economy
             {
                 return;
             }
+            var patientsByType = new Dictionary<string, int>();
             foreach (Department department in Hospital.Instance.m_departments)
             {
                 foreach (EntityIDPointer<Entity> pointer in department.m_departmentPersistentData.m_patients)
@@ -43,8 +45,17 @@ namespace RPH.Mod.Economy
                     if (hospitalization != null)
                     {
                         Bill(department, patient, hospitalization);
+                        string id = hospitalization.DatabaseID.ToString();
+                        int count;
+                        patientsByType.TryGetValue(id, out count);
+                        patientsByType[id] = count + 1;
                     }
                 }
+            }
+            foreach (KeyValuePair<string, int> type in patientsByType)
+            {
+                RPHLog.Balance(BalanceSection.Inpatient, "type=" + type.Key + " patients=" + type.Value
+                    + " pay=" + type.Value * Value(PayPrefix + type.Key) + " cost=" + type.Value * Value(CostPrefix + type.Key));
             }
         }
 

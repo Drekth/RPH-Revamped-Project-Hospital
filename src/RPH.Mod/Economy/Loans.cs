@@ -37,6 +37,8 @@ namespace RPH.Mod.Economy
                 return;
             }
             Budget budget = Hospital.Instance.m_state.m_budget;
+            int loan = budget.m_loan;
+            int interest = DailyInterest();
             int repayment = EconomyMath.Repayment(budget.m_loan, Tweakables.Float(RepaymentPercentId), Tweakables.Int(RepaymentMinimumId));
             if (repayment > 0)
             {
@@ -51,6 +53,12 @@ namespace RPH.Mod.Economy
             {
                 // The game has no expense category for bank charges: its Budget tab shows them with fines.
                 RPHLedgerService.Spend(overdraft, ExpenseCategory.PENALTIES, string.Empty, string.Empty, LedgerCategory.Overdraft);
+            }
+            if (loan > 0 || overdraft > 0)
+            {
+                RPHLog.Balance(BalanceSection.Loans, "loan=" + loan + " stars=" + RPHLog.Num(Renown.Stars())
+                    + " rate=" + RPHLog.Num(Renown.Ramp(RatePrefix)) + " interest=" + interest + " repaid=" + repayment
+                    + " loan_after=" + budget.m_loan + " balance=" + budget.m_currentBalance + " overdraft=" + overdraft);
             }
         }
     }

@@ -40,6 +40,8 @@ namespace RPH.Mod.Economy
                 return;
             }
             RPHLedgerService.PayDepartment(department, fee.Value, PaymentCategory.INSURANCE_HOSPITALIZED, patient, LedgerCategory.InsuranceTransport);
+            RPHLog.Balance(BalanceSection.Ambulance, "vehicle=" + (vehicle.m_state.m_isHelicopter ? "helicopter" : "ambulance")
+                + " department=" + RPHGameData.DepartmentId(department) + " diagnosis=" + RPHGameData.PatientDiagnosisId(patient) + " fee=" + fee.Value);
         }
     }
 }

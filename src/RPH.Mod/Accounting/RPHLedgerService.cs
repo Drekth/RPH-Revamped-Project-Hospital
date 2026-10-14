@@ -117,6 +117,7 @@ namespace RPH.Mod.Accounting
             {
                 RPHLog.Error("Could not write the ledger to " + path, e);
             }
+            LedgerBalanceLog.Saved(Path.GetFileNameWithoutExtension(saveXmlPath));
         }
 
         public static void OnDayEnding()
@@ -131,6 +132,10 @@ namespace RPH.Mod.Accounting
             if (book != null && book.ReconciliationError.HasValue && book.ReconciliationError.Value != 0)
             {
                 RPHLog.Warn("Day " + book.Day + ": " + book.ReconciliationError.Value + " $ of balance change not explained by the ledger.");
+            }
+            if (book != null)
+            {
+                LedgerBalanceLog.Day(book);
             }
         }
 
@@ -195,6 +200,7 @@ namespace RPH.Mod.Accounting
                 return;
             }
             s_session = session;
+            string save = s_pendingSidecar != null ? Path.GetFileName(s_pendingSidecar).Replace(SidecarSuffix, string.Empty) : null;
             Ledger ledger = LoadSidecar(s_pendingSidecar) ?? new Ledger();
             s_pendingSidecar = null;
 
@@ -211,6 +217,7 @@ namespace RPH.Mod.Accounting
             {
                 SessionChanged();
             }
+            LedgerBalanceLog.Session(save);
         }
 
         private static Ledger LoadSidecar(string path)

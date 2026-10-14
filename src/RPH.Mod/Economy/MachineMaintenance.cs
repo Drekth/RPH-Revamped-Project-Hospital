@@ -88,7 +88,8 @@ namespace RPH.Mod.Economy
             if (Random.value < chance)
             {
                 machine.ReduceDurability(MaxWear);
-                RPHLog.Info("Breakdown: " + type.DatabaseID);
+                RPHLog.Balance(BalanceSection.Maintenance, "event=breakdown machine=" + type.DatabaseID
+                    + " department=" + RPHGameData.DepartmentId(machine.m_state.m_department.GetEntity()));
             }
         }
 

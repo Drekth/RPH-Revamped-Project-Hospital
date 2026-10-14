@@ -57,6 +57,7 @@ Plan and rationale: [docs/ROADMAP.md](docs/ROADMAP.md).
 | StreamingAssets | `<bundle>/Contents/Resources/Data/StreamingAssets/` (Database, Textures, Addons, DLCs) |
 | Install target | `<StreamingAssets>/Addons/ModRPHRevamped/` |
 | Player log | `~/Library/Logs/Unity/Player.log` |
+| Balance logs | `~/Library/Application Support/unity.Oxymoron Games.Project Hospital/RPH/Logs/balance-*.log` (`Application.persistentDataPath`) |
 | Saves | `~/Library/Application Support/unity.Oxymoron Games.Project Hospital/maps/` |
 | Workshop | `~/Library/Application Support/Steam/steamapps/workshop/content/868360/` |
 
@@ -173,6 +174,16 @@ copies the mod to the install target. Check in game: `Player.log` contains `[RPH
 `[RPH] Harmony: N patches applied, 0 failed` and `[RPH] Ledger ready`. F9 opens the window.
 Any `[RPH] Day N: ... not explained by the ledger` line means a money path is not hooked.
 For economy features, the totals shown by our window must match the game's Budget tab to the dollar.
+
+### Balance log
+
+`RPHLog.Balance(section, data)` writes one file per game launch (path above). Tab-separated columns:
+real time, game day (`D12`), game hour, section, then space-separated `key=value` pairs. Sections are the
+constants of `BalanceSection` (`RPHLog.cs`): SESSION (new/load/save, version, other mods), CONFIG (every
+`RPH_*` tweakable in effect, at session start), DAY and MONEY (closed day: totals, patients, prestige, one
+line per ledger category), RENOWN, PATIENTS, DIAGNOSIS, INPATIENT, AMBULANCE, LOANS, EXAMS, MAINTENANCE.
+Filter with `grep -P "\tLOANS\t" balance-*.log`. A new feature that needs balancing logs its numbers there
+(daily summaries at midnight rather than per event when events are frequent), and adds its section.
 
 ## Third-party
 
