@@ -4,23 +4,6 @@ using Lopital;
 
 namespace RPH.Mod.Economy
 {
-    /// <summary>Midnight: the game runs its daily costs here, then closes the day's statistics.</summary>
-    [HarmonyPatch(typeof(Hospital), nameof(Hospital.OnDayStart))]
-    internal static class InpatientDaysPatch
-    {
-        private static void Postfix()
-        {
-            try
-            {
-                InpatientDays.BillDay();
-            }
-            catch (Exception e)
-            {
-                RPHLog.PatchError(nameof(InpatientDaysPatch), e);
-            }
-        }
-    }
-
     /// <summary>
     /// The hospital's own ambulance or helicopter has unloaded its patient onto a stretcher.
     /// City ambulances never come through here: their paramedic fetches the patient another way.

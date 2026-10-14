@@ -78,7 +78,9 @@ Line numbers drift between game versions: re-grep the decompiled code after ever
 | Hospitalization | `HospitalizationComponent.m_state` | Type in `m_hospitalizationTreatment` (`TRT_HOSPITALIZATION_*`), bed in `m_bed`. Diagnosis paid once in private `SendHome`. |
 | Ambulance arrival | `Ambulance.SetupPatient` | Own ambulance and helicopter only; city ambulances (`m_external`) hand over the patient elsewhere. |
 | Daily stats | `Lopital.DailyStatistics` | Hospital: `Hospital.m_state.m_dailyStatistics`. Dept: `m_departmentPersistentData.m_todaysStatistics` / `m_statistics`. Aggregates only, no ledger. |
-| Budget, loan | `Lopital.Budget` | Starts at 100 000, loan steps of 20 000, max 500 000. |
+| Budget, loan | `Lopital.Budget` | Starts at 100 000, loan steps of 20 000, max 500 000. Interest (loan / 100) charged in `Hospital.OnDayStart`. |
+| Prestige | `DailyStatistics.m_reputation` (0–1) | Daily score; closed days in `Hospital.m_state.m_statisticsHistory`. Patient count modifier: `Hospital.GetPrestigePatientsModifier(float)`. |
+| Patient spawn | `InsuranceCompany.CalculatePatientCounts`, `BehaviorPatient.RandomizeMedicalCondition` | Daily counts per insurer (walk-in, ambulance, helicopter index); diagnosis drawn per department, weighted by `GameDBDiagnosisOccurrence`. |
 | Salary | `Lopital.EmployeeComponent` (`SalaryBase + …`) | Fixed at hire. |
 | Hiring | `Lopital.HiringManager`, `HiringPanelController` | Agency prices hard-coded (2 500 / 1 000). |
 | Insurance | `Lopital.InsuranceManager`, `Lopital.InsuranceCompany` | Objectives and rewards. |

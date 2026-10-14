@@ -286,6 +286,7 @@ public class CategoryInfoTests
     [InlineData(LedgerCategory.InsuranceInpatientDays, CategoryGroup.Income)]
     [InlineData(LedgerCategory.InsuranceTransport, CategoryGroup.Income)]
     [InlineData(LedgerCategory.InpatientCare, CategoryGroup.Expense)]
+    [InlineData(LedgerCategory.Overdraft, CategoryGroup.Expense)]
     public void EconomyCategoriesHaveTheirGroup(LedgerCategory category, CategoryGroup group)
     {
         Assert.Equal(group, CategoryInfo.GetGroup(category));

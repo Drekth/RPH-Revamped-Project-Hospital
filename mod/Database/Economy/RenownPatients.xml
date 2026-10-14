@@ -1,0 +1,38 @@
+<Database>
+    <!-- RPH Economy: patients follow the hospital's renown. The renown is the average prestige of the last
+         RENOWN_DAYS closed days, in stars (0-5), so one bad day does not change everything the next.
+         A curve gives a percentage by renown: LOW_PERCENT up to LOW_STARS, HIGH_PERCENT from HIGH_STARS, linear in between.
+         A little-known hospital gets few patients, almost only common diseases, few ambulance cases and no helicopter.
+         Starting values to be balanced with the statistics window. Other mods can override any value by redefining its ID. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior: patient count from yesterday's prestige only, 50 % to 105 %). -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_RENOWN_PATIENTS_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_RENOWN_DAYS"> <Value>7</Value> </GameDBTweakableInt>
+
+    <!-- Walk-in patients, in % of what the insurance contracts send (replaces the game's prestige modifier). -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_WALK_IN_LOW_STARS"> <Value>1</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_WALK_IN_LOW_PERCENT"> <Value>40</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_WALK_IN_HIGH_STARS"> <Value>4.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_WALK_IN_HIGH_PERCENT"> <Value>110</Value> </GameDBTweakableFloat>
+
+    <!-- Patients brought by ambulance (trauma, severe emergencies), in % of what the contracts send. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_AMBULANCE_LOW_STARS"> <Value>2</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_AMBULANCE_LOW_PERCENT"> <Value>0</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_AMBULANCE_HIGH_STARS"> <Value>4.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_AMBULANCE_HIGH_PERCENT"> <Value>120</Value> </GameDBTweakableFloat>
+
+    <!-- The helicopter brings patients only from this renown on. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_HELICOPTER_MIN_STARS"> <Value>3.5</Value> </GameDBTweakableFloat>
+
+    <!-- Chance (%) to keep a diagnosis of this rarity; refused ones are drawn again. Common diseases are always kept.
+         The suffix after RPH_ECONOMY_RENOWN_ is the GameDBDiagnosisOccurrence ID: other mods can add curves for their own. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_UNCOMMON_LOW_STARS"> <Value>1.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_UNCOMMON_LOW_PERCENT"> <Value>15</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_UNCOMMON_HIGH_STARS"> <Value>4</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_UNCOMMON_HIGH_PERCENT"> <Value>100</Value> </GameDBTweakableFloat>
+
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_RARE_LOW_STARS"> <Value>2.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_RARE_LOW_PERCENT"> <Value>0</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_RARE_HIGH_STARS"> <Value>4.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_RENOWN_OCCURRENCE_RARE_HIGH_PERCENT"> <Value>100</Value> </GameDBTweakableFloat>
+</Database>

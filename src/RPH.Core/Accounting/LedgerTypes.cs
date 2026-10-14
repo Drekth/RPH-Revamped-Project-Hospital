@@ -27,6 +27,7 @@ namespace RPH.Core.Accounting
         Training,
         Maintenance,
         InpatientCare,
+        Overdraft,
 
         // Financing: moves the balance but is not profit or loss
         LoanTaken,

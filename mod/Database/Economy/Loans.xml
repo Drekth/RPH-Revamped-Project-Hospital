@@ -1,0 +1,23 @@
+<Database>
+    <!-- RPH Economy: loans. The daily interest rate follows the hospital's renown (average prestige of the last
+         RPH_ECONOMY_RENOWN_DAYS days, see RenownPatients.xml): LOW_PERCENT up to LOW_STARS, HIGH_PERCENT from HIGH_STARS,
+         linear in between. Every night, after the interest, REPAYMENT_PERCENT % of the loan is repaid (at least
+         REPAYMENT_MIN). If the balance is then negative, the overdraft costs OVERDRAFT_PERCENT % of it.
+         Taking and repaying loans by hand stays as in the game. Starting values to be balanced with the statistics window. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior: 1 % interest a day, repaid only by hand, free overdraft). -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_LOANS_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Daily interest, in % of the loan. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_LOAN_RATE_LOW_STARS"> <Value>1</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_LOAN_RATE_LOW_PERCENT"> <Value>1.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_LOAN_RATE_HIGH_STARS"> <Value>4.5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_ECONOMY_LOAN_RATE_HIGH_PERCENT"> <Value>0.4</Value> </GameDBTweakableFloat>
+
+    <!-- Daily repayment, in % of the loan, and its minimum. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_LOAN_REPAYMENT_PERCENT"> <Value>5</Value> </GameDBTweakableFloat>
+    <GameDBTweakableInt ID="RPH_ECONOMY_LOAN_REPAYMENT_MIN"> <Value>1000</Value> </GameDBTweakableInt>
+
+    <!-- Daily overdraft charges, in % of the negative balance. -->
+    <GameDBTweakableFloat ID="RPH_ECONOMY_OVERDRAFT_PERCENT"> <Value>2</Value> </GameDBTweakableFloat>
+</Database>

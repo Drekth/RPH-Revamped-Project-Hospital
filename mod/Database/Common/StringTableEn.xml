@@ -27,6 +27,7 @@
             <GameDBLocalizedString><LocID>RPH_CAT_Wages</LocID><Text>Wages</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Maintenance</LocID><Text>Machine maintenance</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_InpatientCare</LocID><Text>Inpatient care</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_Overdraft</LocID><Text>Overdraft charges</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Training</LocID><Text>Training</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_LoanTaken</LocID><Text>Loan taken</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_LoanRepaid</LocID><Text>Loan repaid</Text></GameDBLocalizedString>

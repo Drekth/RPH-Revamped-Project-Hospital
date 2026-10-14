@@ -227,17 +227,22 @@ Fait :
   forfait du diagnostic payé à la sortie reste.
 - Forfait de transport pour les patients amenés par notre ambulance ou notre hélicoptère ; les
   ambulances de la ville ne rapportent rien (`mod/Database/Economy/AmbulanceFees.xml`).
+- Renommée : moyenne du prestige des 7 derniers jours. Elle décide du nombre de patients, de la part des
+  arrivées en ambulance (hélicoptère seulement pour un hôpital renommé) et de la part des maladies peu
+  courantes et rares : un hôpital peu connu ne reçoit presque que des cas courants
+  (`mod/Database/Economy/RenownPatients.xml`).
+- Prêts : taux d'intérêt selon la renommée, remboursement automatique d'un pourcentage de la dette chaque
+  nuit, agios sur le découvert (`mod/Database/Economy/Loans.xml`).
 
 Pas de coût par traitement : il est compris dans le coût journalier des soins, pour rester simple.
 
 Reste :
 1. Prix affichés dans les infobulles des examens.
-2. Prêts : taux selon le prestige, échéancier, découvert pénalisé.
-3. Assurances : contrats négociés, plafonds de volume, nouveaux assureurs avec leurs objectifs et leurs
-   types de patients.
-4. Amendes : mauvais diagnostic, décès évitable, transfert vers un autre hôpital.
-5. Courbe de difficulté : lisser le début de partie, coûts fixes qui croissent avec la taille.
-6. Équilibrage avec la fenêtre de stats : marges cibles par taille d'hôpital, préréglages Facile,
+2. Assurances : contrats négociés, plafonds de volume, nouveaux assureurs avec leurs objectifs et leurs
+   types de patients. À concevoir avec les chiffres de la fenêtre de stats.
+3. Amendes : mauvais diagnostic, décès évitable, transfert vers un autre hôpital.
+4. Courbe de difficulté : lisser le début de partie, coûts fixes qui croissent avec la taille.
+5. Équilibrage avec la fenêtre de stats : marges cibles par taille d'hôpital, préréglages Facile,
    Normal, Difficile.
 
 **Terminé quand** un petit, un moyen et un grand hôpital tombent dans les marges cibles de chaque
