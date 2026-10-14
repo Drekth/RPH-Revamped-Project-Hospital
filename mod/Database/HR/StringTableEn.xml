@@ -1,0 +1,13 @@
+<Database>
+    <GameDBStringTable ID="LOC_EN_RPH_HR">
+        <LanguageCode>en</LanguageCode>
+        <LanguageNameLocalized>English</LanguageNameLocalized>
+        <Contributors>
+            <Name>Drekth</Name>
+        </Contributors>
+        <LocalizedStrings>
+            <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS</LocID><Text>Porters' room</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS_DESCRIPTION</LocID><Text>All porters of the hospital are based in here. They move patients on stretchers and wheelchairs for every department. \n\nMin. Staff requirements: \n1x Porter</Text></GameDBLocalizedString>
+        </LocalizedStrings>
+    </GameDBStringTable>
+</Database>

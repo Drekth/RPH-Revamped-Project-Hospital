@@ -1,0 +1,56 @@
+<Database>
+    <!-- RPH HR: porters. A porter is a nurse paid less who only moves patients (stretcher, wheelchair) for the whole
+         hospital, whatever the department. He works from a porters' room, which can be built in any department.
+         Hired from the Porters window (F10), not from the department hiring panel.
+         The game picks the person who moves a patient: a free porter of the current shift, the closest to the patient,
+         comes first; with none free (or none hired) a nurse does it as in vanilla.
+         Starting values to be balanced with the statistics window. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior: no porters' room, nurses move patients). -->
+    <GameDBTweakableInt ID="RPH_HR_PORTERS_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Wage of a porter, in % of the wage a nurse of the same level would get. -->
+    <GameDBTweakableFloat ID="RPH_HR_PORTERS_SALARY_PERCENT"> <Value>70</Value> </GameDBTweakableFloat>
+
+    <!-- Agency fee paid once when a porter is hired. -->
+    <GameDBTweakableInt ID="RPH_HR_PORTERS_HIRING_FEE"> <Value>500</Value> </GameDBTweakableInt>
+
+    <!-- Colour of the porters' tunic (0-1 each), to tell them from the nurses. -->
+    <GameDBTweakableFloat ID="RPH_HR_PORTERS_COAT_RED"> <Value>0.25</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_HR_PORTERS_COAT_GREEN"> <Value>0.55</Value> </GameDBTweakableFloat>
+    <GameDBTweakableFloat ID="RPH_HR_PORTERS_COAT_BLUE"> <Value>0.35</Value> </GameDBTweakableFloat>
+
+    <!-- The porters' room: workspace for porters (tag "porter_workspace"), one PC desk each. Added to the shared rooms
+         of every department by the mod at startup (it is not in the game's Departments.xml). The floor texture and the
+         icon are the nurses' station ones. -->
+    <GameDBRoomType ID="ROOM_TYPE_RPH_PORTERS">
+        <AbbreviationLocID>ROOM_TYPE_RPH_PORTERS_DESCRIPTION</AbbreviationLocID>
+        <TextureID>396</TextureID>
+        <IconIndex>824</IconIndex>
+        <AccessRights>STAFF</AccessRights>
+
+        <RequiredEquipment>
+            <GameDBRequiredEquipment>    <Tag>ui_pc</Tag>            <MinCount>1</MinCount>     </GameDBRequiredEquipment>
+            <GameDBRequiredEquipment>    <Tag>ui_stretcher</Tag>     <MinCount>0</MinCount>     </GameDBRequiredEquipment>
+            <GameDBRequiredEquipment>    <Tag>ui_wheelchair</Tag>    <MinCount>0</MinCount>     </GameDBRequiredEquipment>
+            <GameDBRequiredEquipment>    <Tag>ui_office_desk</Tag>   <MinCount>0</MinCount>     </GameDBRequiredEquipment>
+            <GameDBRequiredEquipment>    <Tag>ui_chair_office</Tag>  <MinCount>0</MinCount>     </GameDBRequiredEquipment>
+        </RequiredEquipment>
+
+        <LockedByDefault>false</LockedByDefault>
+
+        <BuildingModeFilters>
+            <Tag>ui_stretcher</Tag>
+            <Tag>ui_wheelchair</Tag>
+            <Tag>ui_cabinets</Tag>
+            <Tag>ui_sink_def</Tag>
+        </BuildingModeFilters>
+
+        <Tags>
+            <Tag>porter_workspace</Tag>
+        </Tags>
+
+        <MinWidth>3</MinWidth>
+        <MinHeight>3</MinHeight>
+    </GameDBRoomType>
+</Database>

@@ -8,6 +8,7 @@ namespace RPH.Mod
         public static bool PooKEconomyLoaded { get; private set; }
         public static bool HospitalEmsLoaded { get; private set; }
         public static bool ShiftHandoverModLoaded { get; private set; }
+        public static bool PortersModLoaded { get; private set; }
 
         public static void Check()
         {
@@ -26,6 +27,10 @@ namespace RPH.Mod
                 {
                     ShiftHandoverModLoaded = true;
                 }
+                else if (name.IndexOf("Porter", StringComparison.OrdinalIgnoreCase) >= 0 && !name.StartsWith("RPH", StringComparison.Ordinal))
+                {
+                    PortersModLoaded = true;
+                }
             }
             if (PooKEconomyLoaded)
             {
@@ -38,6 +43,10 @@ namespace RPH.Mod
             if (ShiftHandoverModLoaded)
             {
                 RPHLog.Warn("A shift handover mod is loaded: RPH shift handover is off.");
+            }
+            if (PortersModLoaded)
+            {
+                RPHLog.Warn("A porters mod is loaded: RPH porters are off.");
             }
         }
     }

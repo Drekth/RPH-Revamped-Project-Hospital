@@ -1,0 +1,13 @@
+<Database>
+    <GameDBStringTable ID="LOC_FR_RPH_HR">
+        <LanguageCode>fr</LanguageCode>
+        <LanguageNameLocalized>Français</LanguageNameLocalized>
+        <Contributors>
+            <Name>Drekth</Name>
+        </Contributors>
+        <LocalizedStrings>
+            <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS</LocID><Text>Local des brancardiers</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>ROOM_TYPE_RPH_PORTERS_DESCRIPTION</LocID><Text>Tous les brancardiers de l'hôpital sont basés ici. Ils transportent les patients en brancard et en fauteuil pour tous les services. \n\nPersonnel minimum : \n1x Brancardier</Text></GameDBLocalizedString>
+        </LocalizedStrings>
+    </GameDBStringTable>
+</Database>

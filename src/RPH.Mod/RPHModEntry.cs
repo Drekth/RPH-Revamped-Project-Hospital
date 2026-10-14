@@ -3,6 +3,7 @@ using System.Reflection;
 using HarmonyLib;
 using RPH.Mod.Accounting;
 using RPH.Mod.Economy;
+using RPH.Mod.HR;
 using RPH.Mod.Stats;
 
 namespace RPH.Mod
@@ -63,6 +64,7 @@ namespace RPH.Mod
         {
             RPHLedgerService.Tick();
             MachineMaintenance.Tick();
+            PortersRoom.Tick();
         }
     }
 }
