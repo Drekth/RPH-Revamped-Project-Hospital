@@ -149,6 +149,9 @@ Rules:
 - Log through one logger with the `[RPH]` prefix.
 - Compatibility: PooK Hospital Economy patches the same money paths and adds its own price list.
   Detect it and warn; never charge twice. Detect Hospital EMS; don't require it.
+  Features inspired by other mods (Loupito75's, Bottleneck Monitor, PooK) are rewritten from their
+  public descriptions: never read or copy their code. A gameplay feature inspired by a mod turns
+  itself off when that mod is loaded.
 
 ## Build and verify
 

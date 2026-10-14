@@ -1,8 +1,36 @@
 # Feuille de route – RPH Revamped Project Hospital
 
-État au 10 octobre 2026. Les faits techniques viennent de la décompilation du jeu installé
-(1.2.x, 4 DLC). Les problèmes de joueurs viennent des discussions Steam et d'agrégats d'avis
-(voir « Sources » en bas). Beaucoup de fils datent de 2018–2021 : certains bugs ont pu être corrigés.
+État au 14 octobre 2026. Les faits techniques viennent de la décompilation du jeu installé
+(1.2.x, 4 DLC). Les problèmes de joueurs viennent des discussions Steam et d'agrégats d'avis.
+Beaucoup de fils datent de 2018–2021 : certains bugs ont pu être corrigés. Ce que font les autres mods
+vient de leurs pages Workshop, lues le 14 octobre 2026. Toutes les références sont dans « Sources », en
+bas.
+
+## 0. Vision : moderniser Project Hospital
+
+Project Hospital simule bien la médecine (diagnostic, examens, traitements), mais sa gestion est
+mince :
+- l'argent rentre sans que les actes coûtent quoi que ce soit ;
+- le personnel n'a ni marché de l'emploi, ni moral qui compte, ni relève réaliste ;
+- le matériel ne s'use pas ;
+- rien n'explique pourquoi l'hôpital perd de l'argent ou se bloque.
+
+RPH modernise le jeu sur quatre piliers.
+
+| Pilier | Objectif | Phases |
+|---|---|---|
+| Voir | Le joueur sait d'où vient chaque dollar et où l'hôpital bloque | 1, 2, 5 |
+| Gérer | L'économie, le personnel et le matériel imposent de vrais choix | 3, 4, 6 |
+| Faire vivre | Patients et personnel circulent et vivent l'hôpital de façon crédible | 5, 7, 8 |
+| Progresser | Recherche, nouveaux domaines, contenu sur la durée | 9, 10 |
+
+Principes communs à toutes les phases :
+- un seul mod de code, chargé par le chargeur natif du jeu : pas de BepInEx, macOS et Windows ;
+- textes en anglais et en français ;
+- chaque fonction de gameplay a son interrupteur ; quand elle est coupée, le jeu se comporte comme
+  l'original ;
+- retirer le mod laisse les sauvegardes jouables ;
+- tous les chiffres d'équilibrage sont dans des fichiers de données.
 
 ## 1. Ce que la décompilation change au plan
 
@@ -13,8 +41,10 @@
    installer, surtout sur macOS.
 2. **Harmony est obligatoire** : le chargeur exige `0Harmony.dll` dans le dossier. On s'en sert pour
    tous les patchs.
-3. **Le Workshop ne livre pas les DLL.** Les abonnés reçoivent seulement le XML. Il faudra distribuer
-   un zip (GitHub Releases) avec une procédure de copie, comme le fait PooK.
+3. **Le jeu ne charge pas les DLL du Workshop.** L'abonnement télécharge bien les fichiers, DLL
+   comprises, mais le jeu ne lit que le XML du dossier Workshop. Le joueur doit copier le mod dans
+   `Addons/`. On distribue donc un zip (GitHub Releases) avec une procédure de copie, comme PooK et
+   Bottleneck Monitor. Un petit chargeur peut lever cette contrainte (phase 11).
 4. **Tout l'argent passe par deux méthodes** : `Hospital.Pay` (toutes les recettes, y compris celles
    des départements via `Department.Pay`) et `Hospital.Spend` (toutes les dépenses). Un grand livre de
    comptes complet est faisable avec quelques patchs, sans toucher au reste.
@@ -26,51 +56,104 @@
    (`Textures/ui/icons.png`). On peut construire nos fenêtres avec les briques du jeu, chargées depuis
    l'installation du joueur, sans copier ses fichiers dans le dépôt.
 7. **La capture d'écran de référence vient du mod « PooK Hospital Economy »** (Workshop 3815904306).
-   Il n'a pas de licence : on s'inspire de l'idée et de la mise en page, mais on réécrit tout. Il
-   patche les mêmes méthodes et ajoute son propre barème : nos modules économie devront le détecter
-   et prévenir le joueur pour éviter une double facturation.
+   Il utilise le chargeur natif comme nous, mais n'existe pas sur macOS. Il n'a pas de licence : on
+   reprend les idées, pas le code (voir §3). Il patche les mêmes méthodes et ajoute son propre barème.
+   Nos modules économie le détectent et coupent ce qui ferait double facturation (c'est déjà fait pour
+   les examens).
+8. **Le jeu calcule déjà la charge et l'attente.** Un moniteur de goulots peut lire ces valeurs au lieu
+   de les recalculer : `Room.GetWorkloadLevel`, `Room.GetWorkloadDayPercent` et
+   `GetWorkloadNightPercent`, l'attente des patients (`BehaviorPatient`, `m_continuousWaitingTime`),
+   `BedWaitingStatus` et `ProcedureQueue`. Le jeu a aussi des événements (`GlobalEventManager` :
+   accident, catastrophe naturelle, pandémie) et des objectifs (`Objective*`), utiles pour les phases 7
+   et 8.
 
 ## 2. Problèmes récurrents
 
 | Domaine | Problème | Origine | Réponse du mod | Phase |
 |---|---|---|---|---|
-| Interface | UI jugée « écrasante et peu intuitive », dure à gérer pour un grand hôpital, illisible sur Steam Deck | Avis Steam | Fenêtres de stats détaillées, lisibles, avec explications au survol | 2 |
+| Interface | UI jugée « écrasante et peu intuitive », dure à gérer pour un grand hôpital, illisible sur Steam Deck | Avis Steam | Fenêtres de stats détaillées et lisibles | 2 |
 | Interface | Impossible de savoir pourquoi on perd de l'argent : la radiologie et le labo paraissent toujours déficitaires | Avis, code | Grand livre par département, équipement et équipe | 1–2 |
+| Interface | On ne voit pas ce qui bloque l'hôpital | Steam, Workshop | Moniteur de goulots avec la cause et l'action conseillée | 5 |
 | Économie | Début de partie très serré, afflux de patients aléatoire d'un jour à l'autre | Steam | Lisser l'afflux, paiement journalier de l'hospitalisation | 3 |
-| Économie | Une fois lancé, le jeu « tourne tout seul » | Steam (2024) | Coûts fixes qui croissent avec la taille, entretien, contrats | 3, 5 |
-| Économie | Les examens et traitements ne coûtent rien à l'hôpital, l'équipement n'a aucun coût d'entretien | Code | Barème de coûts variables, entretien et amortissement | 3, 5 |
+| Économie | Une fois lancé, le jeu « tourne tout seul » | Steam (2024) | Coûts fixes qui croissent avec la taille, entretien, contrats | 3, 6 |
+| Économie | Les examens et traitements ne coûtent rien à l'hôpital, l'équipement n'a aucun coût d'entretien | Code | Barème des actes, usure et réparations (faits en partie), gammes | 3, 6 |
 | Économie | L'hospitalisation n'est payée qu'à la sortie : patients bloqués = aucune recette | Steam, code | Paiement journalier | 3 |
 | Économie | Prêt rudimentaire : paliers fixes de 20 000, plafond 500 000 | Code | Taux selon le prestige, échéancier | 3 |
 | Économie | Les frais d'agence de recrutement sont comptés comme des « pénalités » | Code | Catégorie propre dans nos stats | 1 |
 | RH | Le moral n'a aucune conséquence : le personnel ne démissionne jamais | Steam | Moral avec effets : fatigue, absences, démissions | 4 |
 | RH | Niveau, compétences et salaire mal reliés, salaire figé à l'embauche | Steam, code | Négociation, augmentations, primes | 4 |
-| RH | Relève des équipes à 7 h et 20 h : l'hôpital se bloque une à deux heures | Steam | Chevauchement des équipes | 4 |
+| RH | Relève des équipes à 7 h et 20 h : l'hôpital se bloque une à deux heures | Steam | Arrivée avant la relève, transmission au poste, couverture des retards | 4 |
+| RH | Infirmiers et laborantins perdent leur temps à transporter patients et échantillons | Workshop | Brancardiers | 4 |
 | RH | Agents d'entretien : un par département et un local chacun, pénible | Steam | Service de nettoyage par zones | 4 |
-| RH | Alertes « personnel manquant » erronées, plafond de 200 employés | Steam (2018) | Le plafond est maintenant une option du jeu ; diagnostic dans nos stats | 4 |
-| Matériel | Pas d'usure, de panne ni de gamme : l'achat est un choix unique | Code, Steam | Usure, pannes, maintenance, gammes | 5 |
-| Matériel | Labos et radiologie saturés, patients en attente d'examens | Steam | Indicateurs de file d'attente et taux d'utilisation | 2, 5 |
-| Recherche | Aucun système de recherche ; demande d'un hôpital universitaire | Steam | Arbre de recherche, internes et étudiants | 6 |
-| Domaines | Les mods de départements dupliquent symptômes et examens ; le CRP qui les fédère n'est plus maintenu | Workshop | Contenu propre préfixé `RPH_`, CRP optionnel | 7 |
-| Flux patients | Patients bloqués (observation, hospitalisation), départs après un délai | Steam | Onglet « patients bloqués » avec la cause | 2, 7 |
+| RH | Alertes « personnel manquant » erronées, plafond de 200 employés | Steam (2018) | Le plafond est maintenant une option du jeu ; alertes de personnel dans nos stats | 4 |
+| Matériel | Pas d'usure, de panne ni de gamme : l'achat est un choix unique | Code, Steam | Usure et pannes (faites), maintenance, gammes | 3, 6 |
+| Matériel | Labos et radiologie saturés, patients en attente d'examens | Steam | Examens bloqués dans le moniteur, taux d'utilisation | 5, 6 |
+| Flux patients | Patients bloqués (observation, hospitalisation), départs après un délai | Steam, Workshop | Moniteur de goulots, transfert de niveau de soins | 5 |
+| Urgences | Les patients arrivent en ambulance sans aucun bilan | Workshop | Bilan et soins préhospitaliers | 7 |
+| Patients | Les patients hospitalisés restent cloués au lit | Workshop | Vie des patients, cafétéria | 8 |
+| Recherche | Aucun système de recherche ; demande d'un hôpital universitaire | Steam | Arbre de recherche, internes et étudiants | 9 |
+| Domaines | Les mods de départements dupliquent symptômes et examens ; le CRP qui les fédère n'est plus maintenu | Workshop | Contenu propre préfixé `RPH_`, CRP optionnel | 10 |
 | Performance | Ralentissements sur les grands hôpitaux, plantages | Avis Steam | Règle : aucun calcul par image, agrégats par heure ou par jour | Toutes |
 
-## 3. Dépendances
+## 3. Mods de référence : ce qu'on reprend
+
+Règles :
+1. On reprend des **idées**, jamais du code ni des assets. Aucun de ces mods n'a de licence libre : le
+   dépôt GitHub de Loupito75 est « All rights reserved » et n'autorise que la consultation, PooK et
+   Bottleneck Monitor n'ont pas de licence. On conçoit à partir de leur description publique et de notre
+   décompilation du jeu, **sans lire leur code**.
+2. Une fonction de gameplay reprise d'un mod a son interrupteur et **se coupe d'elle-même quand ce mod
+   est chargé**. Le joueur qui préfère l'original le garde, sans conflit. Les fonctions qui ne font
+   qu'observer (stats, moniteur) restent actives.
+3. `CREDITS.md` cite chaque inspiration (« idée de … »).
+4. Ce que RPH apporte en plus : macOS sans BepInEx, un seul mod à installer, chaque montant dans le grand
+   livre, l'historique dans la fenêtre de stats.
+
+| Mod (auteur) | Technique | Idées reprises | Ce qu'on ajoute | Phase |
+|---|---|---|---|---|
+| PooK Hospital Economy (N0d PooK) | Chargeur natif, Windows seulement | Hospitalisation payée à l'heure chaque soir ; coût des examens et traitements ; remboursement selon le lieu des soins (consultation, hospitalisation, trauma, USI) ; coût journalier des lits ; recettes des arrivées en ambulance et en hélicoptère ; liste de candidats gratuite et atouts cachés payants ; projets : nouveaux assureurs, amendes | macOS ; prix dans les infobulles (demandé par ses joueurs) | 3, 4 |
+| Bottleneck Monitor (LiPadu) | Chargeur natif, lecture seule | Panneau des goulots : files, examens bloqués, lits, personnel ; alertes critiques ou à surveiller ; clic qui centre la caméra ; action conseillée ; seuils réglables ; mise à jour depuis le dossier Workshop | Historique par jour et tendances dans la fenêtre de stats | 4, 5, 11 |
+| Hospital Shift Handover (Loupito75) | BepInEx | Arrivée avant l'équipe, transmission au même poste, l'équipe sortante couvre un retard, vestiaires | Temps de chevauchement payé et visible dans le grand livre | 4 |
+| Hospital Porters (Loupito75) | BepInEx | Rôle de brancardier, local dédié, transport des patients et des échantillons, tournées, repli sur infirmiers et laborantins | Coût et productivité dans l'onglet Personnel | 4 |
+| Hospital Traffic Control (Loupito75) | BepInEx | Portes à sens unique, règles d'accès, pas de raccourci par les salles, agents d'entretien plus discrets | — | 4, 5 |
+| Hospital Care Level Transfer (Loupito75) | BepInEx | Passage d'USC en service conventionnel, automatique ou manuel, avec garde-fous ; infobulle qui explique un refus | Débloquer aussi l'observation des urgences | 5 |
+| Hospital EMS (Loupito75) | BepInEx | Bilan et soins dans l'ambulance ou l'hélicoptère ; correctifs du brancard et de la réservation de lit | Types d'ambulances, coût des soins en route | 7 |
+| Hospital Patient Life (Loupito75) | BepInEx | Patients hospitalisés qui sortent de leur chambre, cafétéria, coucher et lever échelonnés | Recettes de cafétéria, satisfaction qui pèse sur le prestige | 8 |
+| Hospital Always Lit (Loupito75) | BepInEx | Couloirs et salles d'attente toujours éclairés | — | 8 |
+| Hospital Mod Update Checker (Loupito75) | BepInEx, réseau | Avis de mise à jour sur l'écran titre | Sans réseau : comparaison avec la copie Workshop | 11 |
+| Hospital Radio (Loupito75) | BepInEx | Hors périmètre : aucun effet de jeu, environ 120 Mo d'audio | — | — |
+
+## 4. Dépendances
 
 | Dépendance | Décision | Raison |
 |---|---|---|
-| Harmony (MIT) | **Oui**, livré en `0Harmony.dll` (build net35) | Exigé par le chargeur du jeu. |
-| BepInEx | **Non** | Inutile avec le chargeur natif, difficile sur macOS. On reste compatible avec les mods qui l'utilisent (Hospital EMS). |
-| Community Resource Pack | **Plus tard, optionnel** (phase 7) | Utile seulement pour du contenu médical partagé. Plus maintenu depuis environ 2022 : risque. |
-| PooK Hospital Economy | **Incompatible** avec nos modules économie | Mêmes patchs, double facturation. Détection et avertissement. |
+| Harmony (MIT) | **Oui**, livré en `0Harmony.dll` (build net35 de Lib.Harmony 2.2.2) | Exigé par le chargeur du jeu. 2.3+ fait planter le jeu sur macOS. |
+| BepInEx | **Non** | Inutile avec le chargeur natif, difficile sur macOS. On reste compatible avec les mods qui l'utilisent. |
+| Community Resource Pack | **Plus tard, optionnel** (phase 10) | Utile seulement pour du contenu médical partagé. Plus maintenu depuis environ 2022 : risque. |
+| PooK Hospital Economy | **Incompatible** avec nos modules économie | Mêmes patchs, double facturation. Détection, avertissement, et nos fonctions en double se coupent. |
+| Mods de Loupito75 | **Compatibles, jamais requis** | Notre équivalent se coupe quand le sien est chargé. |
+| Bottleneck Monitor | **Compatible** | Lecture seule des deux côtés : aucun conflit. |
+| HZDev's QoL Mod | **Compatible, à tester** | Change l'IA de diagnostic, pas nos systèmes. |
 
-## 4. Plan étape par étape
+## 5. Horizons
 
-Chaque phase se termine par une version jouable. Les phases 1 et 2 ne changent pas le gameplay : elles
+| Version | Contenu | Phases |
+|---|---|---|
+| alpha 0.x | Statistiques avancées, puis économie | 0–3 |
+| 1.0 | Personnel, flux et goulots | 4–5 |
+| 2.0 | Matériel, urgences, vie des patients | 6–8 |
+| 3.0 | Recherche, domaines | 9–10 |
+
+La phase 11 (publication et maintenance) tourne en continu dès l'alpha. Chaque phase se termine par une
+version jouable et peut sortir sans les suivantes. Les phases 1 et 2 ne changent pas le gameplay : elles
 servent à mesurer, pour équilibrer tout le reste avec des chiffres.
 
-**État au 10 octobre 2026** : phases 0, 1 et 2 codées, compilées et déployées sur macOS ; 45 tests
+## 6. Plan étape par étape
+
+**État au 14 octobre 2026** : phases 0, 1 et 2 codées, compilées et déployées sur macOS ; 45 tests
 unitaires du cœur passent. **Reste à vérifier en jeu** (critères « Terminé quand » ci-dessous), puis
-sous Windows. Écarts par rapport au plan initial, pour rester simple :
+sous Windows. Phase 3 commencée : barème des examens. L'usure des machines, prévue avec le matériel, est
+faite en avance. Écarts par rapport au plan initial, pour rester simple :
 - le registre stocke des totaux par jour (catégorie × département × cause × équipe), pas chaque
   mouvement : c'est assez pour toutes les vues prévues et le fichier reste petit ;
 - fichier annexe `<sauvegarde>.rph.txt` (texte tabulé, sans dépendance JSON en .NET 3.5) ;
@@ -132,40 +215,106 @@ sauvegarde → quitter → recharger.
 pas chuter les images par seconde. **Première version publique (alpha)** : utile seule, elle permet de
 recruter des testeurs avant de toucher au gameplay.
 
-### Phase 3 – Économie
+### Phase 3 – Économie (en cours)
 
-1. Barème de coûts des examens et traitements, et remboursement par l'assurance selon le niveau de
-   soin (consultation, observation, service, soins intensifs). Tous les montants dans des fichiers
-   de données.
-2. Paiement journalier de l'hospitalisation, au lieu d'un paiement unique à la sortie.
-3. Prêts : taux selon le prestige, échéancier, découvert pénalisé.
-4. Contrats d'assurance : tarifs négociés, plafonds de volume.
-5. Courbe de difficulté : lisser le début de partie, ajouter des coûts fixes qui croissent avec la
-   taille de l'hôpital pour éviter le « jeu qui tourne tout seul ».
-6. Équilibrage avec la fenêtre de stats : tableaux de marges cibles par taille d'hôpital, préréglages
-   Facile, Normal, Difficile.
+Fait :
+- Barème des examens, payé par l'assurance au département qui fait l'examen
+  (`mod/Database/Economy/ExamPrices.xml`), coupé quand PooK est chargé.
+- Usure, pannes aléatoires et réparations payantes des machines
+  (`mod/Database/Economy/MachineMaintenance.xml`).
 
-### Phase 4 – Recrutement et personnel
+Reste :
+1. Coût des traitements, et remboursement selon le niveau de soin (consultation, hospitalisation,
+   trauma, USI).
+2. Hospitalisation payée chaque jour au lieu d'une seule fois à la sortie.
+3. Coût journalier des lits ; recettes des arrivées en ambulance et en hélicoptère.
+4. Prix affichés dans les infobulles des examens et des traitements.
+5. Prêts : taux selon le prestige, échéancier, découvert pénalisé.
+6. Assurances : contrats négociés, plafonds de volume, nouveaux assureurs avec leurs objectifs et leurs
+   types de patients.
+7. Amendes : mauvais diagnostic, décès évitable, transfert vers un autre hôpital.
+8. Courbe de difficulté : lisser le début de partie, coûts fixes qui croissent avec la taille.
+9. Équilibrage avec la fenêtre de stats : marges cibles par taille d'hôpital, préréglages Facile,
+   Normal, Difficile.
 
-1. Marché de l'emploi : vivier de candidats selon le prestige et le salaire proposé, délai de
-   recrutement, postes ouverts.
-2. Salaires : négociation à l'embauche, augmentations, primes.
-3. Moral avec conséquences visibles : fatigue, absences, démissions.
-4. Chevauchement des équipes pour supprimer le blocage de 7 h et 20 h.
-5. Parcours de formation (en lien avec la formation du DLC Hospital Services).
-6. Service de nettoyage par zones.
-7. Onglet stats Personnel : coût et productivité par employé, départs, heures.
+**Terminé quand** un petit, un moyen et un grand hôpital tombent dans les marges cibles de chaque
+préréglage.
 
-### Phase 5 – Matériel
+### Phase 4 – Personnel (priorité après l'économie)
 
-1. Usure, pannes (événements), maintenance par des techniciens ou un contrat.
+1. **Mesurer d'abord** : onglet Personnel (coût et productivité par employé, heures, départs) et
+   alertes de personnel (département sous le minimum du jeu, employé épuisé, employé sans poste).
+2. **Relève des équipes** : le personnel arrive avant le début de son équipe, la transmission se fait
+   au poste, l'équipe sortante couvre un retard de 15 à 30 minutes. Le chevauchement est payé et
+   visible dans le grand livre.
+3. **Brancardiers** : nouveau rôle et nouveau local ; transport des patients (brancard, fauteuil) et
+   des échantillons, par tournées ; infirmiers et laborantins prennent le relais quand il n'y en a pas.
+   Vérifier d'abord si les sprites du jeu suffisent (tenue recolorée) avant de dessiner un personnage.
+4. **Agence et marché de l'emploi** : liste de candidats gratuite, atouts cachés révélés contre
+   paiement ; vivier selon le prestige et le salaire proposé, délai de recrutement, postes ouverts.
+5. **Salaires** : négociation à l'embauche, augmentations, primes.
+6. **Moral avec conséquences** : fatigue, absences, démissions.
+7. **Formation**, en lien avec la formation du DLC Hospital Services.
+8. **Entretien** : service de nettoyage par zones ; les agents évitent les salles en pleine procédure et
+   attendent devant une salle occupée.
+
+**Terminé quand** l'hôpital ne se bloque plus à 7 h ni à 20 h, et que l'onglet Personnel explique
+chaque démission.
+
+### Phase 5 – Flux et goulots
+
+1. **Moniteur de goulots**, en lecture seule, dans la fenêtre de stats et derrière une icône du HUD qui
+   affiche le nombre de problèmes :
+   - files : patients près de partir, salles d'attente pleines, attente moyenne trop longue, départs et
+     décès du jour ;
+   - examens et traitements bloqués depuis plus d'une heure, groupés par département, procédure et
+     cause ;
+   - lits : aucun lit libre du bon type, service presque plein, salle que le jeu ne peut pas utiliser
+     (avec la raison) ;
+   - personnel : les alertes de la phase 4.
+
+   Chaque alerte est « critique » ou « à surveiller » et propose une action. Un clic centre la caméra,
+   un second passe au cas suivant. Les seuils sont dans les données. Les compteurs sont gardés par jour
+   pour montrer des tendances.
+2. **Transfert de niveau de soins** : un patient stable d'USC passe en service conventionnel du même
+   département, automatiquement ou à la main, avec des garde-fous (danger, isolement, traitement en
+   cours). Une infobulle explique un refus. Débloquer aussi les patients d'observation des urgences qui
+   attendent un lit.
+3. **Circulation** : portes à sens unique, salles fonctionnelles évitées comme raccourcis, règles
+   d'accès plus strictes.
+
+**Terminé quand** chaque patient parti sans soins apparaît dans le moniteur avec sa cause.
+
+### Phase 6 – Matériel
+
+1. Maintenance par des techniciens ou par contrat (l'usure et les pannes sont faites en phase 3).
 2. Gammes d'équipement (basique, standard, haut de gamme) : vitesse, précision du diagnostic, confort.
-3. Indicateurs de saturation des labos et de la radiologie.
-4. Nouveaux objets avec nos propres graphismes (atlas isométriques 4 directions, au format des
+3. Nouveaux objets avec nos propres graphismes (atlas isométriques 4 directions, au format des
    tutoriels officiels), listés dans `CREDITS.md`.
-5. Onglet stats Matériel : taux d'utilisation, rentabilité par machine, pannes.
+4. Onglet Matériel : taux d'utilisation, rentabilité par machine, pannes.
 
-### Phase 6 – Recherche
+### Phase 7 – Urgences et préhospitalier
+
+1. Bilan à bord de l'ambulance ou de l'hélicoptère, noté dans le dossier du patient ; soins en route
+   quand ils sont indiqués (pansement compressif, oxygène, perfusion, antalgiques, transfusion).
+2. Types d'ambulances : de base, médicalisée, hélicoptère, avec des bilans et des soins différents.
+3. Coût des soins en route dans le grand livre, remboursement selon l'assureur.
+4. Correctifs du jeu de base signalés par la communauté : brancard perdu au chargement d'une
+   sauvegarde, lit libéré trop tôt pendant un transfert. Les reproduire nous-mêmes avant de corriger.
+
+### Phase 8 – Vie des patients et confort
+
+1. Les patients hospitalisés qui peuvent marcher sortent de leur chambre : salons, bancs dehors, autres
+   étages.
+2. Cafétéria : repas gratuits pour les patients hospitalisés, payants pour ceux de la consultation
+   (recette dans le grand livre).
+3. Coucher et lever échelonnés.
+4. Satisfaction des patients qui pèse sur le prestige et les assureurs ; objets de salle d'attente avec
+   un vrai effet.
+5. Sécurité incendie utile et obligatoire, avec des événements.
+6. En option : couloirs et salles d'attente toujours éclairés.
+
+### Phase 9 – Recherche
 
 1. Points de recherche gagnés sur les cas complexes, les autopsies (DLC) et l'enseignement.
 2. Arbre de recherche qui débloque des gammes d'équipement, des procédures et des gains d'efficacité.
@@ -174,26 +323,40 @@ recruter des testeurs avant de toucher au gameplay.
 3. Hôpital universitaire : internes et étudiants.
 4. Onglet stats Recherche.
 
-### Phase 7 – Domaines (départements et contenu médical)
+### Phase 10 – Domaines (départements et contenu médical)
 
 1. Décider entre dépendre du CRP ou créer notre propre contenu avec des identifiants `RPH_`.
 2. Nouveaux départements et diagnostics en XML, avec des `ProcedureScript` en C# si besoin
    (le jeu les retrouve dans les types du mod).
-3. Flux de patients : orientations entre départements, patients bloqués.
+3. Orientations entre départements (les patients bloqués sont traités en phase 5).
 
-### Phase 8 – Publication et maintenance (en continu dès la phase 2)
+### Phase 11 – Publication et maintenance (en continu dès l'alpha)
 
 1. Distribution : zip sur GitHub Releases, page Workshop avec la procédure de copie.
-2. Matrice de compatibilité : avec et sans les 4 DLC, PooK, Hospital EMS, HZDev's QoL Mod.
-3. Numéros de version, journal des modifications, migration du fichier annexe entre versions.
-4. Test sur macOS et Windows à chaque version.
+2. **Mises à jour par Steam** : un petit chargeur, copié une seule fois dans `Addons/`, charge la DLL
+   la plus récente de notre item Workshop (idée de Bottleneck Monitor). Il ne charge que notre propre
+   identifiant d'item.
+3. Avis de mise à jour sur l'écran titre, sans réseau : comparer la version chargée avec celle du
+   dossier Workshop.
+4. Raccourci de la fenêtre configurable : **F9 est déjà pris par Hospital Radio** (Bottleneck Monitor
+   utilise F11).
+5. Matrice de compatibilité : avec et sans les 4 DLC, PooK, Bottleneck Monitor, les mods de Loupito75,
+   HZDev's QoL Mod.
+6. Numéros de version, journal des modifications, migration du fichier annexe entre versions.
+7. Test sur macOS et Windows à chaque version.
 
-## 5. Risques et questions ouvertes
+## 7. Risques et questions ouvertes
 
-- **Harmony sur macOS** (Mono 2018, x86_64 sous Rosetta) : non vérifié. C'est le premier test de la
-  phase 0.
-- **Distribution manuelle** : chaque joueur doit copier le dossier et activer l'option. À rendre très
-  simple (procédure illustrée, vérification au démarrage avec un message clair).
+- **Harmony sur macOS** : fonctionne avec Lib.Harmony 2.2.2 ; 2.3 et plus fait planter le Mono du jeu.
+  Ne pas mettre à jour.
+- **Distribution manuelle** : chaque joueur doit copier le dossier et activer l'option. Réponse : le
+  chargeur Workshop de la phase 11, et un message clair au démarrage.
+- **Doublons avec des mods actifs** : Loupito75 publie des versions chaque semaine. Si sa fonction et
+  la nôtre tournent ensemble, elles patchent les mêmes méthodes. Détection par nom d'assembly
+  (`Loupito75.*`), à vérifier en jeu, puis coupure de notre équivalent.
+- **Coût graphique** : brancardiers, chariots et nouveaux objets demandent des sprites isométriques en
+  4 directions.
+- **Ampleur** : onze phases pour un projet personnel. Chaque phase doit pouvoir sortir seule.
 - **Taille fixe de l'interface du jeu** : nos fenêtres doivent gérer elles-mêmes leur mise à l'échelle.
 - **Droits sur les assets du jeu** : les charger au lancement depuis l'installation du joueur ne pose
   pas de question de redistribution ; les copier dans le dépôt, si. Aucune politique écrite
@@ -223,3 +386,19 @@ affirmation à un fil n'a pas été vérifié un par un) :
 - [Community Resource Pack : commentaires](https://steamcommunity.com/sharedfiles/filedetails/comments/2015440728)
 - [HZDev's QoL Mod (BepInEx)](https://catalogue.smods.ru/archives/378620)
 - README du mod PooK Hospital Economy (copie locale du Workshop, item 3815904306)
+
+Mods de référence (pages Workshop lues le 14 octobre 2026) :
+
+- [PooK Hospital Economy](https://steamcommunity.com/sharedfiles/filedetails/?id=3815904306)
+- [Bottleneck Monitor](https://steamcommunity.com/sharedfiles/filedetails/?id=3817130089)
+- Loupito75 : [Shift Handover](https://steamcommunity.com/sharedfiles/filedetails/?id=3799192971),
+  [Porters](https://steamcommunity.com/sharedfiles/filedetails/?id=3810586729),
+  [Traffic Control](https://steamcommunity.com/sharedfiles/filedetails/?id=3797445876),
+  [Care Level Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3798356542),
+  [EMS](https://steamcommunity.com/sharedfiles/filedetails/?id=3799207833),
+  [Patient Life](https://steamcommunity.com/sharedfiles/filedetails/?id=3803626360),
+  [Always Lit](https://steamcommunity.com/sharedfiles/filedetails/?id=3797438326),
+  [Mod Update Checker](https://steamcommunity.com/sharedfiles/filedetails/?id=3806092398),
+  [Radio](https://steamcommunity.com/sharedfiles/filedetails/?id=3809022219),
+  [dépôt GitHub (All rights reserved)](https://github.com/Loupito75/Project-Hospital-Mods)
+- [HZDev's QoL Mod (Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=3550712901)
