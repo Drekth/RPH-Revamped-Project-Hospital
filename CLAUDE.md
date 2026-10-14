@@ -87,6 +87,7 @@ Line numbers drift between game versions: re-grep the decompiled code after ever
 | Hiring | `Lopital.HiringManager`, `HiringPanelController` | Agency prices hard-coded (2 500 / 1 000). |
 | Patient transport | `StretcherComponent.SetDestination(TileObject, …, Entity movingCharacter, …)` | The only place that picks who moves a patient: `FindNurseAssignedToARoomType(NURSES_STATION, free, dept, EMPL_ROLE_PATIENT_TRANSFERS)` when `movingCharacter` is null. The stretcher is then searched in the **mover's department** (`EmployeeComponent.m_department`). |
 | Workspaces | `MapScriptInterface.FindClosestWorkspace`, `Behavior.GetWorkspaceRoomTag()` | A free object tagged `pc` in a room of the **employee's department** whose type has the tag. Room types are not inferred: the player picks one from the department's `Required/SharedRooms*` lists (`GameDBDepartment`, private setters). |
+| Cleaning | `BehaviorJanitor.TryToSelectTileInARoom` → `MapScriptInterface.FindDirtiestTileInRoomWithMatchingAssignmentAnyFloor` / `…InAnyUnreservedRoomAnyFloor` | The dirt search is limited to the **janitor's department** (any floor) and ignores whether a procedure is running; the two finders do not receive the janitor in the second case. `Room.m_roomPersistentData.m_currentProcedureOwner != null` = a procedure runs in the room. States `Walking` / `WalkingToNextRoom` finish when `WalkComponent.IsBusy()` is false, so a stopped janitor must also skip `BehaviorJanitor.Update`. |
 | Employees | `HiringManager.Hire(dept, floor, pos)`, `Floor.AddCharacter` | `AddCharacter` files the employee in `Hospital.m_activeDepartment`. `DPT_DEFAULT` is a hidden department outside `Hospital.m_departments` (not paid). |
 | Insurance | `Lopital.InsuranceManager`, `Lopital.InsuranceCompany` | Objectives and rewards. |
 | Management panel | `HospitalManagementPanelController` | Tabs: Departments, Insurance, Statistics, Budget, Ambulances. |
@@ -131,6 +132,7 @@ src/RPH.Mod/           net35; refs game DLLs + Harmony.
   UI/                  shared: uGUI kit in the game's light theme (RPHUi)
   Stats/               module: advanced statistics window + its tab button
   HR/                  module: shift handover, porters (room, staff, dispatch, window F10)
+  Cleaning/            module: floor-based janitor zones, waiting in front of busy rooms
   <Module>/            next modules: Economy/, HR/, Equipment/, Research/...
 tests/RPH.Core.Tests/  xUnit on net10.0, tests RPH.Core only. CI runs them (.github/workflows).
 mod/Database/          shipped as-is; the game reads Database/ recursively.

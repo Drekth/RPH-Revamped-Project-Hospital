@@ -273,8 +273,14 @@ préréglage.
 5. **Salaires** : négociation à l'embauche, augmentations, primes.
 6. **Moral avec conséquences** : fatigue, absences, démissions.
 7. **Formation**, en lien avec la formation du DLC Hospital Services.
-8. **Entretien** : service de nettoyage par zones ; les agents évitent les salles en pleine procédure et
-   attendent devant une salle occupée.
+8. **Entretien** (premier jet fait, à vérifier en jeu) : service de nettoyage par zones. Un agent d'entretien
+   est rattaché à l'étage de son local d'entretien : il peut aller partout, mais il ne choisit sa saleté que
+   dans les salles de cet étage, quel que soit leur service (le jeu le limite aux salles de son service, sur
+   tous les étages). Les salles confiées à la main restent respectées. Un étage où aucun agent de l'équipe
+   n'a son local reste nettoyé comme dans le jeu, par les agents du service de la salle. Une salle où une
+   procédure se déroule n'est jamais choisie ; si elle le devient pendant que l'agent s'y rend, il s'arrête
+   devant (2 cases) et attend la fin, 30 minutes au plus, puis entre quand même. Réglages :
+   `mod/Database/Cleaning/Cleaning.xml`. Ligne `CLEANING` du journal d'équilibrage à minuit.
 
 **Terminé quand** l'hôpital ne se bloque plus à 7 h ni à 20 h, et que l'onglet Personnel explique
 chaque démission.

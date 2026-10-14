@@ -132,6 +132,9 @@ namespace RPH.Mod
         /// <summary>Midnight: porters hired, times a porter was picked to move a patient, times a nurse had to since none was free.</summary>
         public const string Porters = "PORTERS";
 
-        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE HANDOVER PORTERS";
+        /// <summary>Midnight: times a janitor waited in front of a room where a procedure was running, how long, and how often he gave up waiting.</summary>
+        public const string Cleaning = "CLEANING";
+
+        public const string All = "SESSION CONFIG DAY MONEY RENOWN PATIENTS DIAGNOSIS INPATIENT AMBULANCE LOANS EXAMS MAINTENANCE HANDOVER PORTERS CLEANING";
     }
 }

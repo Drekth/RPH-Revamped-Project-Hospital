@@ -1,0 +1,22 @@
+<Database>
+    <!-- RPH Cleaning: floor-based cleaning service.
+         - A janitor is attached to the floor of his cleaning closet. He can go anywhere, but he only picks dirt to clean in
+           the rooms of that floor, whatever their department (the game limits him to the rooms of his own department,
+           on any floor). Rooms assigned to janitors by hand are still honoured.
+         - A floor where no janitor of his shift is based is left to the janitors of the room's own department, as in the
+           game, so that no floor stays dirty for ever (COVER_FLOORS_WITHOUT_JANITOR).
+         - A room where a procedure is running is never picked. A janitor on his way to a room that has become busy stops
+           in front of it (FRONT_DISTANCE tiles from the room) and waits until the procedure is over, at most WAIT_MINUTES
+           game minutes, then goes in anyway.
+         Starting values to be balanced with the statistics window. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior). -->
+    <GameDBTweakableInt ID="RPH_CLEANING_ZONES_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- 1 = a floor with no janitor of the shift is cleaned by the janitors of the room's department. -->
+    <GameDBTweakableInt ID="RPH_CLEANING_COVER_FLOORS_WITHOUT_JANITOR"> <Value>1</Value> </GameDBTweakableInt>
+
+    <!-- Tiles from a busy room where the janitor stops, and how long he waits there (game minutes). -->
+    <GameDBTweakableInt ID="RPH_CLEANING_FRONT_DISTANCE"> <Value>2</Value> </GameDBTweakableInt>
+    <GameDBTweakableFloat ID="RPH_CLEANING_WAIT_MINUTES"> <Value>30</Value> </GameDBTweakableFloat>
+</Database>

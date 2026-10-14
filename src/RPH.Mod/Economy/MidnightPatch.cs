@@ -1,6 +1,7 @@
 using System;
 using HarmonyLib;
 using Lopital;
+using RPH.Mod.Cleaning;
 using RPH.Mod.HR;
 
 namespace RPH.Mod.Economy
@@ -21,6 +22,7 @@ namespace RPH.Mod.Economy
             Run(ExamBilling.LogDay, nameof(ExamBilling));
             Run(ShiftHandover.LogDay, nameof(ShiftHandover));
             Run(PorterStaff.LogDay, nameof(PorterStaff));
+            Run(JanitorZones.LogDay, nameof(JanitorZones));
         }
 
         /// <summary>One feature failing must not stop the others.</summary>
