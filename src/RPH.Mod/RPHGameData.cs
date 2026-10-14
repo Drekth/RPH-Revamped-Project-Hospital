@@ -115,6 +115,16 @@ namespace RPH.Mod
             return text.StartsWith("!LOC!", StringComparison.Ordinal) ? role.Replace("Character", string.Empty) : text;
         }
 
+        /// <summary>What an expense line was for: a hospitalization type (inpatient care), else an employee role (wages).</summary>
+        public static string ExpenseSourceName(string source)
+        {
+            if (!string.IsNullOrEmpty(source) && Database.Instance.GetEntry<GameDBTreatment>(source) != null)
+            {
+                return EntryName<GameDBTreatment>(source);
+            }
+            return RoleName(source);
+        }
+
         public static string CategoryName(LedgerCategory category)
         {
             return RPHText.Get("RPH_CAT_" + category);

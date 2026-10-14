@@ -377,7 +377,8 @@ namespace RPH.Mod.Stats
             foreach (var category in categories)
             {
                 HeaderRow(m_content, null, RPHGameData.CategoryName(category.Category), category.Amount, groupTotal, category.Count);
-                // Wages: by department and role. Income: by department (diagnoses below). Others: by department.
+                // Wages: by department and role. Inpatient care: by department and hospitalization type.
+                // Income: by department (diagnoses below). Others: by department.
                 foreach (var part in category.Lines.GroupBy(l => DetailKey(l, group))
                     .Select(g => new { Key = g.Key, Sample = g.First(), Amount = g.Sum(l => l.Amount), Count = g.Sum(l => l.Count) })
                     .OrderByDescending(p => Math.Abs(p.Amount)))
@@ -385,7 +386,7 @@ namespace RPH.Mod.Stats
                     string label = RPHGameData.DepartmentName(part.Sample.Department);
                     if (group == CategoryGroup.Expense && part.Sample.Source.Length > 0)
                     {
-                        label += "  ·  " + RPHGameData.RoleName(part.Sample.Source);
+                        label += "  ·  " + RPHGameData.ExpenseSourceName(part.Sample.Source);
                     }
                     DetailRow(m_content, RPHGameData.DepartmentIcon(part.Sample.Department), label, part.Amount, part.Count);
                 }

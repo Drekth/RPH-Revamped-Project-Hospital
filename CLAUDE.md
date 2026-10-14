@@ -74,6 +74,9 @@ Line numbers drift between game versions: re-grep the decompiled code after ever
 | Money in by department | `Lopital.Department.Pay(int, PaymentCategory, Entity)` | Updates dept stats, then calls `Hospital.Pay`. Gives department + patient. |
 | All money out | `Lopital.Hospital.Spend(int, ExpenseCategory)` | No department context. |
 | Wages | `Department.PayWages(Shift)` → private `PayWages(EntityIDPointer<Entity>, Shift)` | Clinic vs hospitalization split by home room. |
+| Midnight | `Hospital.OnDayStart` | Daily costs (loan interest, ambulance upkeep). Runs before `SwitchToNewStatistics` closes the day. |
+| Hospitalization | `HospitalizationComponent.m_state` | Type in `m_hospitalizationTreatment` (`TRT_HOSPITALIZATION_*`), bed in `m_bed`. Diagnosis paid once in private `SendHome`. |
+| Ambulance arrival | `Ambulance.SetupPatient` | Own ambulance and helicopter only; city ambulances (`m_external`) hand over the patient elsewhere. |
 | Daily stats | `Lopital.DailyStatistics` | Hospital: `Hospital.m_state.m_dailyStatistics`. Dept: `m_departmentPersistentData.m_todaysStatistics` / `m_statistics`. Aggregates only, no ledger. |
 | Budget, loan | `Lopital.Budget` | Starts at 100 000, loan steps of 20 000, max 500 000. |
 | Salary | `Lopital.EmployeeComponent` (`SalaryBase + …`) | Fixed at hire. |

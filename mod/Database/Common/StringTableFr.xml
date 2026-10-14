@@ -11,6 +11,8 @@
             <GameDBLocalizedString><LocID>RPH_CAT_Unknown</LocID><Text>Autre</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_InsuranceClinic</LocID><Text>Assurance - patients renvoyés chez eux</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_InsuranceHospitalization</LocID><Text>Assurance - patients hospitalisés</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InsuranceInpatientDays</LocID><Text>Assurance - journées d'hospitalisation</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InsuranceTransport</LocID><Text>Assurance - transport en ambulance</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Food</LocID><Text>Repas</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_InsuranceObjectives</LocID><Text>Récompenses des assureurs</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_EventIncome</LocID><Text>Événements</Text></GameDBLocalizedString>
@@ -24,6 +26,7 @@
             <GameDBLocalizedString><LocID>RPH_CAT_WagesHospitalization</LocID><Text>Salaires - personnel des services</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Wages</LocID><Text>Salaires</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Maintenance</LocID><Text>Maintenance des machines</Text></GameDBLocalizedString>
+            <GameDBLocalizedString><LocID>RPH_CAT_InpatientCare</LocID><Text>Soins des patients hospitalisés</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_Training</LocID><Text>Formation</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_LoanTaken</LocID><Text>Prêt contracté</Text></GameDBLocalizedString>
             <GameDBLocalizedString><LocID>RPH_CAT_LoanRepaid</LocID><Text>Prêt remboursé</Text></GameDBLocalizedString>

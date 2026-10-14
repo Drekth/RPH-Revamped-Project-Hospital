@@ -85,6 +85,9 @@ namespace RPH.Mod.Accounting
     [HarmonyPatch(typeof(Department), nameof(Department.Pay))]
     internal static class DepartmentPayPatch
     {
+        /// <summary>Set by <see cref="RPHLedgerService.PayDepartment"/> to book a payment under our own category.</summary>
+        internal static LedgerCategory? CategoryOverride;
+
         private static void Prefix(Department __instance, Entity character, out bool __state)
         {
             __state = false;
@@ -106,7 +109,7 @@ namespace RPH.Mod.Accounting
             {
                 try
                 {
-                    RPHLedgerService.Recorder.EndScope(RPHLedgerService.CurrentShift, null);
+                    RPHLedgerService.Recorder.EndScope(RPHLedgerService.CurrentShift, CategoryOverride);
                 }
                 catch (Exception e)
                 {

@@ -1,0 +1,12 @@
+<Database>
+    <!-- RPH Economy: transport fees. When the hospital's own ambulance or helicopter unloads a patient, the insurance pays
+         the patient's department a fee. City ambulances pay nothing: the hospital did not do the transport.
+         The game already charges each vehicle used during the day (TWEAKABLE_AMBULANCE_MAINENANCE_COST, 500).
+         Starting values to be balanced with the statistics window. Other mods can override any value by redefining its ID. -->
+
+    <!-- 1 = on, 0 = off (vanilla behavior: arrivals pay nothing). -->
+    <GameDBTweakableInt ID="RPH_ECONOMY_AMBULANCE_FEES_ENABLED"> <Value>1</Value> </GameDBTweakableInt>
+
+    <GameDBTweakableInt ID="RPH_ECONOMY_AMBULANCE_FEE"> <Value>400</Value> </GameDBTweakableInt>
+    <GameDBTweakableInt ID="RPH_ECONOMY_HELICOPTER_FEE"> <Value>1200</Value> </GameDBTweakableInt>
+</Database>

@@ -77,7 +77,7 @@ Principes communs à toutes les phases :
 | Économie | Début de partie très serré, afflux de patients aléatoire d'un jour à l'autre | Steam | Lisser l'afflux, paiement journalier de l'hospitalisation | 3 |
 | Économie | Une fois lancé, le jeu « tourne tout seul » | Steam (2024) | Coûts fixes qui croissent avec la taille, entretien, contrats | 3, 6 |
 | Économie | Les examens et traitements ne coûtent rien à l'hôpital, l'équipement n'a aucun coût d'entretien | Code | Barème des actes, usure et réparations (faits en partie), gammes | 3, 6 |
-| Économie | L'hospitalisation n'est payée qu'à la sortie : patients bloqués = aucune recette | Steam, code | Paiement journalier | 3 |
+| Économie | L'hospitalisation n'est payée qu'à la sortie : patients bloqués = aucune recette | Steam, code | Forfait journalier en plus du forfait de sortie (fait) | 3 |
 | Économie | Prêt rudimentaire : paliers fixes de 20 000, plafond 500 000 | Code | Taux selon le prestige, échéancier | 3 |
 | Économie | Les frais d'agence de recrutement sont comptés comme des « pénalités » | Code | Catégorie propre dans nos stats | 1 |
 | RH | Le moral n'a aucune conséquence : le personnel ne démissionne jamais | Steam | Moral avec effets : fatigue, absences, démissions | 4 |
@@ -111,7 +111,7 @@ Règles :
 
 | Mod (auteur) | Technique | Idées reprises | Ce qu'on ajoute | Phase |
 |---|---|---|---|---|
-| PooK Hospital Economy (N0d PooK) | Chargeur natif, Windows seulement | Hospitalisation payée à l'heure chaque soir ; coût des examens et traitements ; remboursement selon le lieu des soins (consultation, hospitalisation, trauma, USI) ; coût journalier des lits ; recettes des arrivées en ambulance et en hélicoptère ; liste de candidats gratuite et atouts cachés payants ; projets : nouveaux assureurs, amendes | macOS ; prix dans les infobulles (demandé par ses joueurs) | 3, 4 |
+| PooK Hospital Economy (N0d PooK) | Chargeur natif, Windows seulement | Hospitalisation payée à l'heure chaque soir ; coût des examens ; coût journalier des lits selon le lieu des soins (service, USC, USI, trauma) ; recettes des arrivées en ambulance et en hélicoptère ; liste de candidats gratuite et atouts cachés payants ; projets : nouveaux assureurs, amendes | macOS ; prix dans les infobulles (demandé par ses joueurs) | 3, 4 |
 | Bottleneck Monitor (LiPadu) | Chargeur natif, lecture seule | Panneau des goulots : files, examens bloqués, lits, personnel ; alertes critiques ou à surveiller ; clic qui centre la caméra ; action conseillée ; seuils réglables ; mise à jour depuis le dossier Workshop | Historique par jour et tendances dans la fenêtre de stats | 4, 5, 11 |
 | Hospital Shift Handover (Loupito75) | BepInEx | Arrivée avant l'équipe, transmission au même poste, l'équipe sortante couvre un retard, vestiaires | Temps de chevauchement payé et visible dans le grand livre | 4 |
 | Hospital Porters (Loupito75) | BepInEx | Rôle de brancardier, local dédié, transport des patients et des échantillons, tournées, repli sur infirmiers et laborantins | Coût et productivité dans l'onglet Personnel | 4 |
@@ -222,19 +222,22 @@ Fait :
   (`mod/Database/Economy/ExamPrices.xml`), coupé quand PooK est chargé.
 - Usure, pannes aléatoires et réparations payantes des machines
   (`mod/Database/Economy/MachineMaintenance.xml`).
+- Journées d'hospitalisation : chaque nuit, chaque patient qui a un lit rapporte un forfait journalier et
+  coûte des soins, selon son type d'hospitalisation (`mod/Database/Economy/InpatientDays.xml`). Le
+  forfait du diagnostic payé à la sortie reste.
+- Forfait de transport pour les patients amenés par notre ambulance ou notre hélicoptère ; les
+  ambulances de la ville ne rapportent rien (`mod/Database/Economy/AmbulanceFees.xml`).
+
+Pas de coût par traitement : il est compris dans le coût journalier des soins, pour rester simple.
 
 Reste :
-1. Coût des traitements, et remboursement selon le niveau de soin (consultation, hospitalisation,
-   trauma, USI).
-2. Hospitalisation payée chaque jour au lieu d'une seule fois à la sortie.
-3. Coût journalier des lits ; recettes des arrivées en ambulance et en hélicoptère.
-4. Prix affichés dans les infobulles des examens et des traitements.
-5. Prêts : taux selon le prestige, échéancier, découvert pénalisé.
-6. Assurances : contrats négociés, plafonds de volume, nouveaux assureurs avec leurs objectifs et leurs
+1. Prix affichés dans les infobulles des examens.
+2. Prêts : taux selon le prestige, échéancier, découvert pénalisé.
+3. Assurances : contrats négociés, plafonds de volume, nouveaux assureurs avec leurs objectifs et leurs
    types de patients.
-7. Amendes : mauvais diagnostic, décès évitable, transfert vers un autre hôpital.
-8. Courbe de difficulté : lisser le début de partie, coûts fixes qui croissent avec la taille.
-9. Équilibrage avec la fenêtre de stats : marges cibles par taille d'hôpital, préréglages Facile,
+4. Amendes : mauvais diagnostic, décès évitable, transfert vers un autre hôpital.
+5. Courbe de difficulté : lisser le début de partie, coûts fixes qui croissent avec la taille.
+6. Équilibrage avec la fenêtre de stats : marges cibles par taille d'hôpital, préréglages Facile,
    Normal, Difficile.
 
 **Terminé quand** un petit, un moyen et un grand hôpital tombent dans les marges cibles de chaque

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using GLib;
 using Lopital;
 using RPH.Core.Accounting;
 using UnityEngine;
@@ -140,6 +141,34 @@ namespace RPH.Mod.Accounting
                 return;
             }
             s_recorder.StartDay(DayTime.Instance.GetDay(), Balance, 0f);
+        }
+
+        /// <summary>Department.Pay (the game's department stats count it), booked under our own category.</summary>
+        public static void PayDepartment(Department department, int amount, PaymentCategory category, Entity patient, LedgerCategory ledgerCategory)
+        {
+            DepartmentPayPatch.CategoryOverride = ledgerCategory;
+            try
+            {
+                department.Pay(amount, category, patient);
+            }
+            finally
+            {
+                DepartmentPayPatch.CategoryOverride = null;
+            }
+        }
+
+        /// <summary>Hospital.Spend, booked under a department, a source and our own category.</summary>
+        public static void Spend(int amount, ExpenseCategory category, string department, string source, LedgerCategory ledgerCategory)
+        {
+            s_recorder.BeginScope(department, source);
+            try
+            {
+                Hospital.Instance.Spend(amount, category);
+            }
+            finally
+            {
+                s_recorder.EndScope(CurrentShift, ledgerCategory);
+            }
         }
 
         private static string SidecarPathFor(string saveXmlPath)

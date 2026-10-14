@@ -279,3 +279,15 @@ public class DayRangeTests
         Assert.Equal(to, range.To);
     }
 }
+
+public class CategoryInfoTests
+{
+    [Theory]
+    [InlineData(LedgerCategory.InsuranceInpatientDays, CategoryGroup.Income)]
+    [InlineData(LedgerCategory.InsuranceTransport, CategoryGroup.Income)]
+    [InlineData(LedgerCategory.InpatientCare, CategoryGroup.Expense)]
+    public void EconomyCategoriesHaveTheirGroup(LedgerCategory category, CategoryGroup group)
+    {
+        Assert.Equal(group, CategoryInfo.GetGroup(category));
+    }
+}

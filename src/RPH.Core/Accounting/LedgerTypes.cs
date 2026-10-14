@@ -8,6 +8,8 @@ namespace RPH.Core.Accounting
         // Income
         InsuranceClinic,
         InsuranceHospitalization,
+        InsuranceInpatientDays,
+        InsuranceTransport,
         Food,
         InsuranceObjectives,
         EventIncome,
@@ -24,6 +26,7 @@ namespace RPH.Core.Accounting
         Wages,
         Training,
         Maintenance,
+        InpatientCare,
 
         // Financing: moves the balance but is not profit or loss
         LoanTaken,
@@ -61,6 +64,8 @@ namespace RPH.Core.Accounting
             {
                 case LedgerCategory.InsuranceClinic:
                 case LedgerCategory.InsuranceHospitalization:
+                case LedgerCategory.InsuranceInpatientDays:
+                case LedgerCategory.InsuranceTransport:
                 case LedgerCategory.Food:
                 case LedgerCategory.InsuranceObjectives:
                 case LedgerCategory.EventIncome:
